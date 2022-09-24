@@ -21,10 +21,7 @@ df_price = yf.download(stock_code,
                         end=end_date,
                         progress=True)
 df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
-
-
 st.line_chart(df_price['Close'])
-
 else:
     st.write('Click "Observe" button to observe historical price chart')
 
