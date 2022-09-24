@@ -23,7 +23,9 @@ if st.button('Observe'):
                         progress=True)
     df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
     # st.line_chart(df_price['Close'])
-    c = alt.Chart(df_price['Close']).mark_line()  #.encode(x='Date',y='Price')
+    c = alt.Chart(df_price['Close']).mark_line().encode(
+        x='Date:T',
+        y='Price')
     st.altair_chart(c)
     
 else:
