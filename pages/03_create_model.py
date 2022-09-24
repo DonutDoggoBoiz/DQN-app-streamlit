@@ -27,8 +27,11 @@ if st.button('Observe'):
     #c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(x='Date',y='Close')
     #st.altair_chart(c, use_container_width=True)
     #st.write(df_price['Close'].reset_index())
-    c = plt.plot(data=df_price['Close'])
-    st.pyplot(fig=c)
+    #c = plt.plot(data=df_price['Close'])
+    fig, ax = plt.subplots()
+    ax.plot(data=df_price['Close'])
+
+    st.pyplot(fig)
     
 else:
     st.write('Click "Observe" button to observe historical price chart')
