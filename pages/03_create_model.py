@@ -28,10 +28,13 @@ if st.button('Observe'):
 #    st.altair_chart(c, use_container_width=True)
     
     #with scale
-    c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(
-        x = alt.X('Date') ,
-        y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10])
-                 ) )
+    c = alt.Chart(df_price['Close'].reset_index())
+            .mark_line()
+            .encode(x = alt.X('Date') ,
+                    y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                    tooltip=['Date','Close']
+                   )
+
     st.altair_chart(c, use_container_width=True)
     
     st.line_chart(df_price['Close'])
