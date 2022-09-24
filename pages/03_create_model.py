@@ -23,7 +23,7 @@ if st.button('Observe'):
                         end=end_date,
                         progress=True)
     df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
- #   st.line_chart(df_price['Close'])
+#    st.line_chart(df_price['Close'])
 #    c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(x='Date',y='Close')
 #    st.altair_chart(c, use_container_width=True)
     
@@ -34,13 +34,10 @@ if st.button('Observe'):
                  ) )
     st.altair_chart(c, use_container_width=True)
     
-    st.line_chart(df_price['Close'])
-    
     ## plt
 #    fig, ax = plt.subplots()
 #    ax.plot(df_price['Close'])
-#    ax.set_title('Historical price of ' + str(stock_name))
-
+#    ax.set_title('Historical price of ' + str(stock_name) )
  #   st.pyplot(fig)
     
 else:
