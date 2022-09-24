@@ -34,6 +34,8 @@ if st.button('Observe'):
                  ) )
     st.altair_chart(c, use_container_width=True)
     
+    st.line_chart(df_price['Close'])
+    
     ## plt
 #    fig, ax = plt.subplots()
 #    ax.plot(df_price['Close'])
