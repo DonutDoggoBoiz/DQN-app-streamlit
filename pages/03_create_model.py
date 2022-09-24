@@ -1,5 +1,6 @@
 import streamlit as st
 import altair as alt
+import matploblib.plyplot as plt
 import datetime
 import numpy as np
 import pandas as pd
@@ -23,11 +24,11 @@ if st.button('Observe'):
                         progress=True)
     df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
     # st.line_chart(df_price['Close'])
-    c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(
-        x='Date',
-        y='Close')
-    st.altair_chart(c, use_container_width=True)
+    #c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(x='Date',y='Close')
+    #st.altair_chart(c, use_container_width=True)
     #st.write(df_price['Close'].reset_index())
+    c = plt.plot(data=df_price['Close'])
+    st.pyplot(c)
     
 else:
     st.write('Click "Observe" button to observe historical price chart')
