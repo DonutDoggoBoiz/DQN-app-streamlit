@@ -29,7 +29,7 @@ if st.button('Observe'):
     #st.write(df_price['Close'].reset_index())
     #c = plt.plot(data=df_price['Close'])
     fig, ax = plt.subplots()
-    ax.plot(y=df_price['Close'])
+    ax.plot(df_price['Close'])
 
     st.pyplot(fig)
     
