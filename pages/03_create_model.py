@@ -35,6 +35,7 @@ if st.button('Observe'):
                     y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                     tooltip=['Date','Close']
                    )
+            .interactive()
         )
 
     st.altair_chart(c, use_container_width=True)
