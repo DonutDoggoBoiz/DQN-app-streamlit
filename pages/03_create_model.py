@@ -30,7 +30,7 @@ if st.button('Observe'):
     #c = plt.plot(data=df_price['Close'])
     fig, ax = plt.subplots()
     ax.plot(df_price['Close'])
-    ax.set_title('Historical price of' + str(stock_name))
+    ax.set_title('Historical price of ' + str(stock_name))
 
     st.pyplot(fig)
     
