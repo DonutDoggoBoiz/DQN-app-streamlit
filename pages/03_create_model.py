@@ -23,11 +23,11 @@ if st.button('Observe'):
                         progress=True)
     df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
     # st.line_chart(df_price['Close'])
-    #c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(
-        #x='Date:T',
-        #y='Price:Q')
-    #st.altair_chart(c)
-    st.write(df_price['Close'].reset_index())
+    c = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(
+        x='Date:T',
+        y='Price:Q')
+    st.altair_chart(c)
+    #st.write(df_price['Close'].reset_index())
     
 else:
     st.write('Click "Observe" button to observe historical price chart')
