@@ -16,12 +16,13 @@ end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
 
 if st.button('Observe'):
     stock_code = stock_name + '.BK'
-df_price = yf.download(stock_code,
+    df_price = yf.download(stock_code,
                         start=start_date,
                         end=end_date,
                         progress=True)
-df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
-st.line_chart(df_price['Close'])
+    df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+    st.line_chart(df_price['Close'])
+    
 else:
     st.write('Click "Observe" button to observe historical price chart')
 
