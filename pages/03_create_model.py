@@ -7,8 +7,5 @@ st.title('Create DQN Trading Model 🚀')
 st.sidebar.markdown('## Create Model 🚀')
 
 stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
-
-x = [1,2,3,4,5,6,7,8,9,10]
-
-for n in x:
-  st.write(x)
+start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
+end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
