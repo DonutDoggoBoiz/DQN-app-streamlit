@@ -24,7 +24,7 @@ if st.button('Observe'):
     df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
     # st.line_chart(df_price['Close'])
     # c = alt.Chart(df_price['Close']).mark_line()  #.encode(x='Date',y='Price')
-    st.pyplot(df_price['Close'].plot(kind='line', color="tab:orange"))
+    st.write(df_price.index)
     
 else:
     st.write('Click "Observe" button to observe historical price chart')
