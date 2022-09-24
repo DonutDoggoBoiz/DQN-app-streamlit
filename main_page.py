@@ -4,3 +4,5 @@ import streamlit as st
 st.markdown("# Welcome to our Home page 🎉")
 st.markdown("💸💸💸")
 st.sidebar.markdown("# Home page 🎉")
+
+print(hellop PRINT)
