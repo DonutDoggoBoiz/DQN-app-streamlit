@@ -38,11 +38,12 @@ if st.button('Observe'):
     st.altair_chart(c, use_container_width=True)
     
     # st.line_chart(df_price['Close'])
-    st.write('This dataset contains ' + str(df_price['Close'].count()) + ' days of historical prices')
+    df_length = df_price['Close'].count()
+    st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
     
-    split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_price['Close'].count()), int(df_price['Close'].count()/2))
+    split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
     st.write('The split point is ' + str(split_point) )
-    st.write('It split data into ' + str(split_point/df_price['Close'].count()) + ' : ' + str(1-(split_point/df_price['Close'].count()))
+    st.write('It split data into ' + str(split_point/df_length) + ' : ' + str(1-(split_point/df_length)) )
     
 else:
     st.write('Click "Observe" button to observe historical price chart')
