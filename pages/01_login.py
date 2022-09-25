@@ -41,8 +41,8 @@ elif choice == "Login":
         st.subheader("Analytics")
       elif task == "Profiles":
         st.subheader("Profiles")
-        users_df = pd.DataFrame({'users':users,
-                                 'passwords':passwords}
+        users_df = pd.DataFrame({'users':st.session_state['users'],
+                                 'passwords':st.session_state['passwords']}
                                )
         st.dataframe(users_df)
     else:
