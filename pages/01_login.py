@@ -58,6 +58,8 @@ elif choice == "Sign Up":
   new_password = st.text_input("Password", type='password')
   
   if st.button("Signup"):
+    if len(new_user) <= 0:
+        st.error("Please provide username")
     st.session_state['users'].append(new_user)
     st.session_state['passwords'].append(new_password)
     st.success("You have successfully created a valid account")
