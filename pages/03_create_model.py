@@ -1,6 +1,6 @@
 import streamlit as st
 import altair as alt
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import datetime
 import numpy as np
 import pandas as pd
@@ -47,5 +47,13 @@ if observe_button:
     test_size_pct = 100-train_size_pct
     st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
     st.write('considered as {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
+    
+    split_button = st.checkbox('Split dataset')
+    if split_button:
+      train_prices = df_price.loc[:split_point, 'Close'].to_numpy()
+      test_prices = df_price.loc[split_point:, 'Close'].to_numpy()
+      st.write('Train set' + df_price.loc[:split_point, 'Close'])
+      st.write('-----------------------------------------------'])
+      st.write('Test set' + df_price.loc[split_point:, 'Close'])
 #else:
     #st.write('Click "Observe" button to observe historical price chart')
