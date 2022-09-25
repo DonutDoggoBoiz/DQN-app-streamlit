@@ -59,5 +59,9 @@ if observe_button:
       st.write('### Test set')
       st.write(str(df_price['Close'][split_point:].count()) )
       st.write(df_price['Close'][split_point:])
+      
+      train_button = st.checkbox('Train model')
+      if train_button:
+        st.write("Train Train Train")
 #else:
     #st.write('Click "Observe" button to observe historical price chart')
