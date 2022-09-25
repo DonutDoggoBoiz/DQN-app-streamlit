@@ -15,15 +15,14 @@ st.sidebar.markdown('## Create Model 🚀')
 stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
 start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
 end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
-
-if st.button('Observe'):
-    stock_code = stock_name + '.BK'
-    df_price = yf.download(stock_code,
+stock_code = stock_name + '.BK'
+df_price = yf.download(stock_code,
                         start=start_date,
                         end=end_date,
                         progress=True)
-    df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
-    
+df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+
+if st.button('Observe'):    
     #alt chart with scale
     c = (alt.Chart(df_price['Close'].reset_index()
                   )
