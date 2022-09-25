@@ -27,4 +27,4 @@ if authentication_status:
   st.sidebar.title(f"Welcome {name}")
 '''
 
-st.write('----None----")
+st.write('----None----')
