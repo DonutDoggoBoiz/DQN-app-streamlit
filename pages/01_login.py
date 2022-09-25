@@ -7,9 +7,14 @@ import pandas as pd
 #st.write('--------')
 
 # --- mocked up User Database ---
-if st.sidebar.checkbox('database'):
-  users = ['admin']
-  passwords = ['admin']
+if 'users' not in st.session_state:
+    st.session_state['users'] = ['admin']
+if 'passwords' not in st.session_state:
+    st.session_state['passwords'] = ['admin']
+    
+#if st.sidebar.checkbox('database'):
+#  users = ['admin']
+#  passwords = ['admin']
 
 st.title("Simple Login App")
 
@@ -25,7 +30,8 @@ elif choice == "Login":
   password = st.sidebar.text_input("Password", type='password')
   if st.sidebar.checkbox("Login"):
     #if password == '12345':
-    if passwords[users.index(username)] == password:
+    #if passwords[users.index(username)] == password:
+    if st.session_state['passwords'][st.session_state['users'].index(username)] == password:
       st.success("Logged In as {}".format(username))
 
       task = st.selectbox("Task", ["Add Post", "Analytics", "Profiles"])
