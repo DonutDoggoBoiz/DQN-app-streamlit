@@ -22,7 +22,11 @@ menu = ["Home", "Login", "Sign Up"]
 choice = st.sidebar.selectbox("Menu", menu)
 
 if choice == "Home":
-  st.subheader("Home")
+    st.subheader("Home")
+    users_df = pd.DataFrame({'users':st.session_state['users'],
+                             'passwords':st.session_state['passwords'] }
+                           )
+    st.dataframe(users_df)
   
 elif choice == "Login":
   st.subheader("Login Section")
@@ -54,7 +58,7 @@ elif choice == "Sign Up":
   new_password = st.text_input("Password", type='password')
   
   if st.button("Signup"):
-    users.append(new_user)
-    passwords.append(new_password)
+    st.session_state['users'].append(new_user)
+    st.session_state['passwords'].append(new_password)
     st.success("You have successfully created a valid account")
     st.info("Go to Login Menu to login")
