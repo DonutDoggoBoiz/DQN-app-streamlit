@@ -53,7 +53,7 @@ if observe_button:
       train_prices = df_price.loc[:split_point, 'Close'].to_numpy()
       test_prices = df_price.loc[split_point:, 'Close'].to_numpy()
       st.write('Train set' + df_price.loc[:split_point, 'Close'])
-      st.write('-----------------------------------------------'])
+      st.write('-----------------------------------------------')
       st.write('Test set' + df_price.loc[split_point:, 'Close'])
 #else:
     #st.write('Click "Observe" button to observe historical price chart')
