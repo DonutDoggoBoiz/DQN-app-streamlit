@@ -23,7 +23,7 @@ elif choice == "Login":
   password = st.sidebar.text_input("Password", type='password')
   if st.sidebar.checkbox("Login"):
     #if password == '12345':
-    if passwords.index(users) == password:
+    if passwords[users.index(users)] == password:
       st.success("Logged In as {}".format(username))
 
       task = st.selectbox("Task", ["Add Post", "Analytics", "Profiles"])
