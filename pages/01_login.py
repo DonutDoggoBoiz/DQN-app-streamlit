@@ -33,6 +33,10 @@ elif choice == "Login":
   username = st.sidebar.text_input("Username")
   password = st.sidebar.text_input("Password", type='password')
   if st.sidebar.checkbox("Login"):
+    if len(username) <= 0:
+        st.sidebar.error("Please enter username")
+    if len(password) <= 0:
+        st.sidebar.error("Please enter password")
     #if password == '12345':
     #if passwords[users.index(username)] == password:
     if st.session_state['passwords'][st.session_state['users'].index(username)] == password:
