@@ -19,7 +19,7 @@ if choice == "Home":
   
 elif choice == "Login":
   st.subheader("Login Section")
-  username = st.sidebar.test_input("Username")
+  username = st.sidebar.text_input("Username")
   password = st.sidebar.text_input("Password", type='password')
   if st.sidebar.checkbox("Login"):
     #if password == '12345':
