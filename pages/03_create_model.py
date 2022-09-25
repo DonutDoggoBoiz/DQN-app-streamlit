@@ -22,7 +22,9 @@ df_price = yf.download(stock_code,
                         progress=True)
 df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
 
-if st.button('Observe'):    
+observe_button = st.checkbox('Observe')
+
+if observe_button:    
     #alt chart with scale
     c = (alt.Chart(df_price['Close'].reset_index()
                   )
