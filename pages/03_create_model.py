@@ -46,7 +46,6 @@ if observe_button:
     train_size_pct = (split_point/df_length)*100
     test_size_pct = 100-train_size_pct
     st.write('The split point is ' + str(split_point) )
-    st.write('It split data into ' + str(train_size_pct)+'%'+' of train set and '+ str(test_size_pct)+'%'+' of test set' )
-    st.write('It split data into {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
+    st.write('Dataset will be split into {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
 else:
     st.write('Click "Observe" button to observe historical price chart')
