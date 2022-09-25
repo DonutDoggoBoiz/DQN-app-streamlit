@@ -46,7 +46,7 @@ if observe_button:
     train_size_pct = (split_point/df_length)*100
     test_size_pct = 100-train_size_pct
     st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
-    st.write('considered as {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
+    st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
     
     split_button = st.checkbox('Split dataset')
     if split_button:
