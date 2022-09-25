@@ -50,10 +50,10 @@ if observe_button:
     
     split_button = st.checkbox('Split dataset')
     if split_button:
-      train_prices = df_price.loc[:split_point, 'Close'].to_numpy()
-      test_prices = df_price.loc[split_point:, 'Close'].to_numpy()
-      st.write('Train set' + df_price.loc[:split_point, 'Close'])
+      train_prices = df_price['Close'][:split_point].to_numpy()
+      test_prices = df_price['Close'][split_point:].to_numpy()
+      st.write('Train set' + df_price['Close'][:split_point], 'Close'])
       st.write('-----------------------------------------------')
-      st.write('Test set' + df_price.loc[split_point:, 'Close'])
+      st.write('Test set' + df_price['Close'][split_point:], 'Close'])
 #else:
     #st.write('Click "Observe" button to observe historical price chart')
