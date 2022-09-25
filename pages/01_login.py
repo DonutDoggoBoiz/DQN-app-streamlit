@@ -39,22 +39,23 @@ elif choice == "Login":
         st.sidebar.error("Please enter password")
     #if password == '12345':
     #if passwords[users.index(username)] == password:
-    if st.session_state['passwords'][st.session_state['users'].index(username)] == password:
-      st.success("Logged In as {}".format(username))
+    if len(username) > 0 and len(password) > 0:
+        if st.session_state['passwords'][st.session_state['users'].index(username)] == password:
+          st.success("Logged In as {}".format(username))
 
-      task = st.selectbox("Task", ["Add Post", "Analytics", "Profiles"])
-      if task == "Add Post":
-        st.subheader("Add Your Post")
-      elif task == "Analytics":
-        st.subheader("Analytics")
-      elif task == "Profiles":
-        st.subheader("Profiles")
-        users_df = pd.DataFrame({'users':st.session_state['users'],
-                                 'passwords':st.session_state['passwords']}
-                               )
-        st.dataframe(users_df)
-    else:
-      st.warning("Incorrect Username/Password")
+          task = st.selectbox("Task", ["Add Post", "Analytics", "Profiles"])
+          if task == "Add Post":
+            st.subheader("Add Your Post")
+          elif task == "Analytics":
+            st.subheader("Analytics")
+          elif task == "Profiles":
+            st.subheader("Profiles")
+            users_df = pd.DataFrame({'users':st.session_state['users'],
+                                     'passwords':st.session_state['passwords']}
+                                   )
+            st.dataframe(users_df)
+        else:
+          st.warning("Incorrect Username/Password")
   
 elif choice == "Sign Up":
   st.subheader("Create New Account")
