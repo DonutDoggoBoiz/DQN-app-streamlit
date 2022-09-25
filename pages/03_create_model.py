@@ -47,5 +47,5 @@ if observe_button:
     test_size_pct = 100-train_size_pct
     st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
     st.write('considered as {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
-else:
-    st.write('Click "Observe" button to observe historical price chart')
+#else:
+    #st.write('Click "Observe" button to observe historical price chart')
