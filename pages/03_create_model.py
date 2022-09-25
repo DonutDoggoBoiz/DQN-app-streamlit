@@ -45,7 +45,7 @@ if observe_button:
     split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
     train_size_pct = (split_point/df_length)*100
     test_size_pct = 100-train_size_pct
-    st.write('The split point is ' + str(split_point) )
-    st.write('Dataset will be split into {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
+    st.write('Dataset will be split into {} records of train set and {} records of test set)
+    st.write('considered as {:.2f}% of train set and {:.2f}% of test set'.format(train_size_pct,test_size_pct) )
 else:
     st.write('Click "Observe" button to observe historical price chart')
