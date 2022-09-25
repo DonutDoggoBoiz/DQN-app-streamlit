@@ -3,7 +3,7 @@ import streamlit as st
 st.markdown("# This is a Login Page 🔑")
 st.sidebar.markdown("# Login 🔑")
 
-'''
+/*
 names = ["Peter Parker", "Rebecca Miller"]
 usernames = ["pparker", "rmiller"]
 passwords = ["abc123", "def456"]
@@ -25,6 +25,6 @@ if authentication_status:
   # --- SIDEBAR ---
   authenticator.logout("Logout", "sidebar")
   st.sidebar.title(f"Welcome {name}")
-'''
+*/
 
 st.write('----None----')
