@@ -18,6 +18,21 @@ if 'passwords' not in st.session_state:
 
 st.title("Simple Login App")
 
+# --- login form
+login_form = st.form('Login')
+login_form.subheader('---')
+username = login_form.text_input('Username').lower()
+password = login_form.text_input('Password', type='password')
+
+if login_form.form_submit_button('Login'):
+  if len(username) <= 0:
+    st.warning("Please enter a username")
+  elif len(password) <= 0:
+    st.warning("Please enter your password")
+  elif len(username) > 0 and len(password) > 0:
+    st.success("Login Successful!")
+# --- --- ---
+
 menu = ["Home", "Login", "Sign Up"]
 choice = st.sidebar.selectbox("Menu", menu)
 
