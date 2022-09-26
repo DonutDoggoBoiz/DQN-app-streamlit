@@ -187,3 +187,8 @@ def last10_history():  # ********
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
   fetch_price_data()
+  split_and_train_button = st.checkbox("Split and Train")
+  if split_and_train:
+    st.write("Split......... DONE!")
+    st.write("Train train train")
+    st.wrtie("Training DONE!")
