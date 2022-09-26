@@ -191,4 +191,4 @@ if get_price_button:
   if split_and_train_button:
     st.write("Split......... DONE!")
     st.write("Train train train")
-    st.wrtie("Training DONE!")
+    st.write("Training DONE!")
