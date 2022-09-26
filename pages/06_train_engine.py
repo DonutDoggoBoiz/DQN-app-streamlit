@@ -20,6 +20,7 @@ def fetch_price_data():
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
   df_length = df_price['Close'].count()
+  return df_price, df_length
   
 def observe_price():
   #alt chart with scale
@@ -185,7 +186,8 @@ def last10_history():  # ********
 # -------------------------------------- USER INTERFACE -------------------------- #
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
-  fetch_price_data()
+  # fetch_price_data()
+  df_price, df_length = fetch_price_data()
   observe_button = st.checkbox('Observe')
   if observe_button:
     observe_price()
