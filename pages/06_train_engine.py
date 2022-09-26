@@ -206,9 +206,9 @@ def train_model():
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   st.write('Reward History of last episode')
-  st.line_chart(np_acc_reward_history[-1])
+  st.line_chart(np_acc_reward_history, y=['episode 1','episode 2']) #[-1])
   st.write('Account Balance History of last episode')
-  st.line_chart(np_account_balance_history[-1])
+  st.line_chart(np_account_balance_history, y=['episode 1','episode 2']) #[-1])
 
 # --- reshape history data to array ---
 def reshape_history():
