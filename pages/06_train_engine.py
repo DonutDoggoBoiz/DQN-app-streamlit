@@ -19,6 +19,7 @@ def fetch_price_data():
                         end=end_date,
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+  df_length = df_price['Close'].count()
   
   observe_button = st.checkbox('Observe')
   if observe_button:    
@@ -33,6 +34,14 @@ def fetch_price_data():
               .interactive()
           )
       st.altair_chart(c, use_container_width=True)
+      
+      #show split slider widget
+      st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
+      split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
+      train_size_pct = (split_point/df_length)*100
+      test_size_pct = 100-train_size_pct
+      st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
+      st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
   
 
 def split_dataset(split_point):
