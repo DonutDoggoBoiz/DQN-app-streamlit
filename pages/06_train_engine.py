@@ -42,6 +42,7 @@ def observe_price():
   test_size_pct = 100-train_size_pct
   st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
   st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
+  return split_point
   
 
 def split_dataset():
@@ -190,7 +191,7 @@ if get_price_button:
   df_price, df_length = fetch_price_data()
   observe_button = st.checkbox('Observe')
   if observe_button:
-    observe_price()
+    split_point = observe_price()
     split_and_train_button = st.checkbox("Split and Train")
     if split_and_train_button:
       st.write("Spliting.........")
