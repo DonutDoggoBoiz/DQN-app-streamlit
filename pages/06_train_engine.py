@@ -21,27 +21,26 @@ def fetch_price_data():
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
   df_length = df_price['Close'].count()
   
-  observe_button = st.checkbox('Observe')
-  if observe_button:    
-      #alt chart with scale
-      c = (alt.Chart(df_price['Close'].reset_index()
-                    )
-              .mark_line()
-              .encode(x = alt.X('Date') ,
-                      y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                      tooltip=['Date','Close']
-                     )
-              .interactive()
-          )
-      st.altair_chart(c, use_container_width=True)
-      
-      #show split slider widget
-      st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
-      split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
-      train_size_pct = (split_point/df_length)*100
-      test_size_pct = 100-train_size_pct
-      st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
-      st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
+def observe_price():
+  #alt chart with scale
+  c = (alt.Chart(df_price['Close'].reset_index()
+                )
+          .mark_line()
+          .encode(x = alt.X('Date') ,
+                  y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                  tooltip=['Date','Close']
+                 )
+          .interactive()
+      )
+  st.altair_chart(c, use_container_width=True)
+
+  #show split slider widget
+  st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
+  split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
+  train_size_pct = (split_point/df_length)*100
+  test_size_pct = 100-train_size_pct
+  st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
+  st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
   
 
 def split_dataset():
@@ -187,17 +186,19 @@ def last10_history():  # ********
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
   fetch_price_data()
-  split_and_train_button = st.checkbox("Split and Train")
-  if split_and_train_button:
-    st.write("Spliting.........")
-    split_dataset()
-    st.write("Spliting......... DONE!")
-    st.write("Setting parameters .....")
-    set_parameters()
-    st.write("Setting parameters ..... DONE!")
-    st.write("action_space: {}".format(action_space) ) 
-    st.write("window_size: {}".format(window_size) ) 
-    st.write("n_episode: {}".format(n_episodes) ) 
-    st.write("Training......")
-    st.write("train train train train train -------")
-    st.write("Training.....DONE!")
+  observe_button = st.checkbox('Observe')
+  if observe_button:
+    split_and_train_button = st.checkbox("Split and Train")
+    if split_and_train_button:
+      st.write("Spliting.........")
+      split_dataset()
+      st.write("Spliting......... DONE!")
+      st.write("Setting parameters .....")
+      set_parameters()
+      st.write("Setting parameters ..... DONE!")
+      st.write("action_space: {}".format(action_space) ) 
+      st.write("window_size: {}".format(window_size) ) 
+      st.write("n_episode: {}".format(n_episodes) ) 
+      st.write("Training......")
+      st.write("train train train train train -------")
+      st.write("Training.....DONE!")
