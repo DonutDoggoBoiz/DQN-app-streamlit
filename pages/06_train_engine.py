@@ -188,6 +188,7 @@ if get_price_button:
   fetch_price_data()
   observe_button = st.checkbox('Observe')
   if observe_button:
+    observe_price()
     split_and_train_button = st.checkbox("Split and Train")
     if split_and_train_button:
       st.write("Spliting.........")
