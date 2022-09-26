@@ -293,5 +293,6 @@ if get_price_button:
           st.write("Training......")
           #st.write("train train train train train -------")
           train_model()
-          st.write("Training.....DONE!")
+          st.success("Training.....DONE!")
+          st.info('Please proceed to "Generate Advice" to use your model', icon="ℹ️")
 
