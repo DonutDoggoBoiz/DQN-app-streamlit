@@ -83,6 +83,8 @@ def set_parameters():
   account_balance_history = []
   nom_return_history = []
   real_return_history = []
+  
+  return action_space, window_size, n_episodes
 
 # --- TRAINING MODULE ---
 ## --- initialize agent object
@@ -169,7 +171,7 @@ def train_model():
       end_balance_history.append(account_balance)
       eps_history.append(agent.epsilon)
 
-  # --- reshape history data to array ---
+# --- reshape history data to array ---
 def reshape_history():
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
@@ -192,23 +194,28 @@ momo_paradise = 99
 st.write("start momo = {} ".format(momo_paradise) )
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
-  # fetch_price_data()
-  df_price, df_length = fetch_price_data()
+  fetch_price_data()
+  #df_price, df_length = fetch_price_data()
   observe_button = st.checkbox('Observe')
   if observe_button:
-    split_point = observe_price()
+    observe_price()
+    # split_point = observe_price()
     split_and_train_button = st.checkbox("Split and Train")
     if split_and_train_button:
       st.write("Spliting.........")
       split_dataset()
       st.write("Spliting......... DONE!")
-      st.write("Setting parameters .....")
-      #set_parameters()
-      #st.write("Setting parameters ..... DONE!")
-      #st.write("action_space: {}".format(action_space) ) 
-      #st.write("window_size: {}".format(window_size) ) 
-      #st.write("n_episode: {}".format(n_episodes) ) 
-      #st.write("Training......")
-      #st.write("train train train train train -------")
-      #st.write("Training.....DONE!")
-      st.write('end momo = {}'.format(momo_paradise) )
+      set_param_button = st.checkbox("Set Parameters")
+      if set_param_button:
+        st.write("Setting parameters .....")
+        set_parameters()
+        st.write("Setting parameters ..... DONE!")
+        st.write("action_space: {}".format(action_space) ) 
+        st.write("window_size: {}".format(window_size) ) 
+        st.write("n_episode: {}".format(n_episodes) )
+        train_button = st.checkbox("Let's Train")
+        if train_button:
+          st.write("Training......")
+          st.write("train train train train train -------")
+          st.write("Training.....DONE!")
+          st.write('end momo = {}'.format(momo_paradise) )
