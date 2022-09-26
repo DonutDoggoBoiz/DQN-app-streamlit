@@ -193,7 +193,7 @@ def train_model():
           #print ("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
           #print ("-----------------------------------------")
           st.write("------------------------------------------------")
-          st.write("Episode {} of {} done...".format(i+1, n_episodes)
+          st.write("Episode {} of {} done...".format(i+1, n_episodes) )
           st.write("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
           st.write("------------------------------------------------")
         ### --- end of 1 episode --- ###
