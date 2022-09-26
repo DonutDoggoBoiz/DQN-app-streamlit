@@ -260,7 +260,7 @@ real_return_history = []
 
 
 # -------------------------------------- USER INTERFACE -------------------------- #
-st.title('### Train DQN Stock Trading Model 🚀')
+st.title('Train DQN Stock Trading Model 🚀')
 st.sidebar.markdown('### Train Model 🚀')
 
 get_price_button = st.checkbox("Get Price")
