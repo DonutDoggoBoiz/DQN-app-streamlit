@@ -84,7 +84,28 @@ def set_parameters():
   nom_return_history = []
   real_return_history = []
   
-  return action_space, window_size, n_episodes
+  return {"action_space":action_space,
+          "window_size":window_size,
+          "n_episodes":n_episodes,
+          "agent_gamma":agent_gamma,
+          "agent_epsilon":agent_epsilon,
+          "agent_epsilon_dec":agent_epsilon_dec,
+          "agent_epsilon_end":agent_epsilon_end,
+          "agent_lr":agent_lr,
+          "initial_balance":initial_balance,
+          "trading_size_pct":trading_size_pct,
+          "commission_fee_pct":commission_fee_pct,
+          "trade_size":trade_size,
+          "commission_fee":commission_fee,
+          "total_acc_reward_history":total_acc_reward_history,
+          "end_balance_history":end_balance_history,
+          "eps_history":eps_history,
+          "acc_reward_history":acc_reward_history,
+          "action_history":action_history,
+          "account_balance_history":account_balance_history,
+          "nom_return_history":nom_return_history,
+          "real_return_history":real_return_history,
+         }
 
 # --- TRAINING MODULE ---
 ## --- initialize agent object
@@ -208,11 +229,14 @@ if get_price_button:
       set_param_button = st.checkbox("Set Parameters")
       if set_param_button:
         st.write("Setting parameters .....")
-        set_parameters()
+        #set_parameters()
+        #st.write("action_space: {}".format(action_space) ) 
+        #st.write("window_size: {}".format(window_size) ) 
+        #st.write("n_episode: {}".format(n_episodes) )
+        st.write("Setting parameters A")
+        st.write("Setting parameters B")
+        st.write("Setting parameters C")
         st.write("Setting parameters ..... DONE!")
-        st.write("action_space: {}".format(action_space) ) 
-        st.write("window_size: {}".format(window_size) ) 
-        st.write("n_episode: {}".format(n_episodes) )
         train_button = st.checkbox("Let's Train")
         if train_button:
           st.write("Training......")
