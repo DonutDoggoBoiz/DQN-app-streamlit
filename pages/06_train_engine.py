@@ -189,7 +189,7 @@ if get_price_button:
   fetch_price_data()
   split_and_train_button = st.checkbox("Split and Train")
   if split_and_train_button:
-    st.write("Spliting.........)
+    st.write("Spliting.........")
     split_dataset()
     st.write("Spliting......... DONE!")
     st.write("Setting parameters .....")
