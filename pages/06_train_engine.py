@@ -187,6 +187,7 @@ def last10_history():  # ********
     
 # -------------------------------------- USER INTERFACE -------------------------- #
 momo_paradise = 999
+st.write("start momo = ".format(momo_paradise))
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
   # fetch_price_data()
