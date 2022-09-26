@@ -48,6 +48,7 @@ def observe_price():
 def split_dataset():
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
+  return train_prices, test_prices
   
 # --- MACHINE LEARNING MODULE ---
 ## --- parameters setting ---
@@ -185,6 +186,7 @@ def last10_history():  # ********
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
     
 # -------------------------------------- USER INTERFACE -------------------------- #
+momo_paradise = 999
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
   # fetch_price_data()
@@ -198,11 +200,12 @@ if get_price_button:
       split_dataset()
       st.write("Spliting......... DONE!")
       st.write("Setting parameters .....")
-      set_parameters()
-      st.write("Setting parameters ..... DONE!")
-      st.write("action_space: {}".format(action_space) ) 
-      st.write("window_size: {}".format(window_size) ) 
-      st.write("n_episode: {}".format(n_episodes) ) 
-      st.write("Training......")
-      st.write("train train train train train -------")
-      st.write("Training.....DONE!")
+      #set_parameters()
+      #st.write("Setting parameters ..... DONE!")
+      #st.write("action_space: {}".format(action_space) ) 
+      #st.write("window_size: {}".format(window_size) ) 
+      #st.write("n_episode: {}".format(n_episodes) ) 
+      #st.write("Training......")
+      #st.write("train train train train train -------")
+      #st.write("Training.....DONE!")
+      st.write("momo_paradise")
