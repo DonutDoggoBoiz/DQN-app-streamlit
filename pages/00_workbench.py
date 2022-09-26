@@ -8,6 +8,7 @@ if st.checkbox("Test sess_momo"):
 if st.checkbox("Test normal momo"):
   momo_paradise = 99
   st.write("start momo = {} ".format(momo_paradise) )
+  st.session_state['sess_momo'] = 1111
 
 if st.checkbox("End momo"):
   st.write('end momo = {}'.format(momo_paradise) )
