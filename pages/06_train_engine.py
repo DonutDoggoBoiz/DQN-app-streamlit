@@ -192,9 +192,9 @@ def train_model():
           print ("-----------------------------------------")
         ### --- end of 1 episode --- ###
 
-      total_acc_reward_history.append(acc_reward)
-      end_balance_history.append(account_balance)
-      eps_history.append(agent.epsilon)
+          total_acc_reward_history.append(acc_reward)
+          end_balance_history.append(account_balance)
+          eps_history.append(agent.epsilon)
       
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
