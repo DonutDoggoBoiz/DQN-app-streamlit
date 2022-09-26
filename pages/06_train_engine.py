@@ -48,7 +48,9 @@ def observe_price():
   
 
 def split_dataset():
-  global train_prices, test_prices
+  global df_price_train, df_price_test, train_prices, test_prices
+  df_price_train = df_price['Close'][:split_point]
+  df_price_test = f_price['Close'][split_point:]
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
   #return train_prices, test_prices
@@ -262,8 +264,8 @@ if get_price_button:
     if split_button:
       st.write("Spliting.........")
       split_dataset()
-      st.line_chart(train_prices)
-      st.line_chart(test_prices)
+      st.line_chart(df_price_train)
+      st.line_chart(df_price_test)
       st.write("Spliting......... DONE!")
       set_param_button = st.checkbox("Set Parameters")
       if set_param_button:
