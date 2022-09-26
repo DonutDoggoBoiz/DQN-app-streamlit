@@ -208,4 +208,4 @@ if get_price_button:
       #st.write("Training......")
       #st.write("train train train train train -------")
       #st.write("Training.....DONE!")
-      st.write("momo_paradise")
+      st.write('momo_paradise = '.format(momo_paradise) )
