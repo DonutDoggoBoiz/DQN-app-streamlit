@@ -9,59 +9,46 @@ import yfinance as yf
 # st.markdown("# Create MODEL 🚀")
 # st.sidebar.markdown("# Create Model 🚀")
 
-st.title('Create DQN Trading Model 🚀')
-st.sidebar.markdown('## Create Model 🚀')
+st.title('Create DQN Trading Model 💡')
+st.sidebar.markdown('## Create Model 💡')
 
-stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
-start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
-end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
-stock_code = stock_name + '.BK'
-df_price = yf.download(stock_code,
-                        start=start_date,
-                        end=end_date,
-                        progress=True)
-df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+if set_param_button:
+        st.write("Setting parameters .....")
+        #set_parameters()
+        #st.write("action_space: {}".format(action_space) ) 
+        #st.write("window_size: {}".format(window_size) ) 
+        #st.write("n_episode: {}".format(n_episodes) )
+        st.write("Setting parameters A")
+        st.write("Setting parameters B")
+        st.write("Setting parameters C")
+        '''
+        ### --- environment parameters
+        action_space = 2
+        window_size = 5
+        n_episodes = 2
 
-observe_button = st.checkbox('Observe')
+        ### --- agent parameters
+        agent_gamma = 0.99 
+        agent_epsilon = 1.0
+        agent_epsilon_dec = 0
+        agent_epsilon_end = 0.01
+        agent_lr = 0.001
 
-if observe_button:    
-    #alt chart with scale
-    c = (alt.Chart(df_price['Close'].reset_index()
-                  )
-            .mark_line()
-            .encode(x = alt.X('Date') ,
-                    y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                    tooltip=['Date','Close']
-                   )
-            .interactive()
-        )
+        ### --- trading parameters
+        initial_balance = 1000000
+        trading_size_pct = 10
+        commission_fee_pct = 0.157
+        trade_size = (trading_size_pct/100) * initial_balance
+        commission_fee = (commission_fee_pct/100) * 1.07
 
-    st.altair_chart(c, use_container_width=True)
-    
-    # st.line_chart(df_price['Close'])
-    df_length = df_price['Close'].count()
-    st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
+        ### --- episodic History
+        total_acc_reward_history = []
+        end_balance_history = []
+        eps_history = []
 
-    split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
-    train_size_pct = (split_point/df_length)*100
-    test_size_pct = 100-train_size_pct
-    st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
-    st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
-    
-    split_button = st.checkbox('Split dataset')
-    if split_button:
-      train_prices = df_price['Close'][:split_point].to_numpy()
-      test_prices = df_price['Close'][split_point:].to_numpy()
-      st.write('### Train set')
-      st.write(str(df_price['Close'][:split_point].count()) )
-      st.write(df_price['Close'][:split_point])
-      st.write('-----------------------------------------------')
-      st.write('### Test set')
-      st.write(str(df_price['Close'][split_point:].count()) )
-      st.write(df_price['Close'][split_point:])
-      
-      train_button = st.checkbox('Train model')
-      if train_button:
-        st.write("Train Train Train")
-#else:
-    #st.write('Click "Observe" button to observe historical price chart')
+        ### --- trading History
+        acc_reward_history = []
+        action_history = []
+        account_balance_history = []
+        nom_return_history = []
+        real_return_history = []
