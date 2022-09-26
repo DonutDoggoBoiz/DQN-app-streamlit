@@ -4,6 +4,8 @@ import pandas as pd
 import yfinance as yf
 from dqn_object import Agent
 import streamlit as st
+import altair as alt
+import datetime
 # ------------------------
 
 # --- PRICE FETCHING MODULE ---
