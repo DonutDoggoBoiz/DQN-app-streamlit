@@ -211,8 +211,8 @@ def last10_history():  # ********
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
     
 # -------------------------------------- USER INTERFACE -------------------------- #
-# st.session_state['momo_paradise'] = 999
-# st.write("start momo = {} ".format(st.session_state['momo_paradise']))
+st.session_state['sess_momo'] = 999
+st.write("start sess_momo = {} ".format(st.session_state['sess_momo']))
 momo_paradise = 99
 st.write("start momo = {} ".format(momo_paradise) )
 get_price_button = st.checkbox("Get Price")
@@ -245,3 +245,4 @@ if get_price_button:
           st.write("train train train train train -------")
           st.write("Training.....DONE!")
           st.write('end momo = {}'.format(momo_paradise) )
+          st.write('end sess_momo = {}'.format(st.session_state['sess_momo']) )
