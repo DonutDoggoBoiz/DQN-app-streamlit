@@ -1,3 +1,5 @@
+import streamlit as st
+
 if st.checkbox("Test sess_momo"):
   st.session_state['sess_momo'] = 9999
   sess_momo = st.session_state['sess_momo']
