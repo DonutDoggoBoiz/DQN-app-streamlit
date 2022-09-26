@@ -12,6 +12,7 @@ import yfinance as yf
 st.title('Create DQN Trading Model 💡')
 st.sidebar.markdown('## Create Model 💡')
 
+set_param_button = st.button("Set Parameters")
 if set_param_button:
         st.write("Setting parameters .....")
         #set_parameters()
