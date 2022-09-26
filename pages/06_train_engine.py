@@ -2,17 +2,35 @@
 import numpy as np
 import pandas as pd
 import yfinance as yf
-  # from dqn_object import Agent
+from dqn_object import Agent
 import streamlit as st
 # ------------------------
 
 # --- PRICE FETCHING MODULE ---
-def fetch_price_data(stock_code, start_date, end_date):
+def fetch_price_data():
+  stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
+  start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
+  end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
+  stock_code = stock_name + '.BK'
   df_price = yf.download(stock_code,
                         start=start_date,
                         end=end_date,
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+  
+  observe_button = st.checkbox('Observe')
+  if observe_button:    
+      #alt chart with scale
+      c = (alt.Chart(df_price['Close'].reset_index()
+                    )
+              .mark_line()
+              .encode(x = alt.X('Date') ,
+                      y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                      tooltip=['Date','Close']
+                     )
+              .interactive()
+          )
+      st.altair_chart(c, use_container_width=True)
   
 
 def split_dataset(split_point):
@@ -153,3 +171,8 @@ def reshape_history():
 def last10_history():  # ********
   for i in range(n_episodes-10,n_episodes):
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
+    
+# -------------------------------------- USER INTERFACE -------------------------- #
+get_price button = st.checkbox("Get Price")
+if get_price_button:
+  fetch_price_data()
