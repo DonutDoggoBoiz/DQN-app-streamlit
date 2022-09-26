@@ -139,6 +139,7 @@ def train_model():
       eps_history.append(agent.epsilon)
 
   # --- reshape history data to array ---
+def reshape_history():
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   np_action_history = np.reshape( np.array(action_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
