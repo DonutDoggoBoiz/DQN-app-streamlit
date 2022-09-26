@@ -44,7 +44,7 @@ def fetch_price_data():
       st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
   
 
-def split_dataset(split_point):
+def split_dataset():
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
   
@@ -54,7 +54,7 @@ def set_parameters():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
-  n_episodes = 50      # 10ep use around 6 mins
+  n_episodes = 5      # 10ep use around 6 mins
 
   ### --- agent parameters
   agent_gamma = 0.99              # discount rate for Q rewards
@@ -189,6 +189,15 @@ if get_price_button:
   fetch_price_data()
   split_and_train_button = st.checkbox("Split and Train")
   if split_and_train_button:
-    st.write("Split......... DONE!")
-    st.write("Train train train")
-    st.write("Training DONE!")
+    st.write("Spliting.........)
+    split_dataset()
+    st.write("Spliting......... DONE!")
+    st.write("Setting parameters .....")
+    set_parameters()
+    st.write("Setting parameters ..... DONE!")
+    st.write("action_space: {}".format(action_space) ) 
+    st.write("window_size: {}".format(window_size) ) 
+    st.write("n_episode: {}".format(n_episodes) ) 
+    st.write("Training......")
+    st.write("train train train train train -------")
+    st.write("Training.....DONE!")
