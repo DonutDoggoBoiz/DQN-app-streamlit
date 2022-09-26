@@ -52,3 +52,4 @@ if set_param_button:
         account_balance_history = []
         nom_return_history = []
         real_return_history = []
+        '''
