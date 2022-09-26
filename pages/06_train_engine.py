@@ -258,10 +258,12 @@ if get_price_button:
   if observe_button:
     observe_price()
     # split_point = observe_price()
-    split_and_train_button = st.checkbox("Split and Train")
-    if split_and_train_button:
+    split_button = st.checkbox("Split dataset")
+    if split_button:
       st.write("Spliting.........")
       split_dataset()
+      st.line_chart(train_prices)
+      st.line_chart(test_prices)
       st.write("Spliting......... DONE!")
       set_param_button = st.checkbox("Set Parameters")
       if set_param_button:
