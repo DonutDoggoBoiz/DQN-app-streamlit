@@ -20,7 +20,7 @@ st.title("Simple Login App")
 
 # --- login form
 login_form = st.form('Login')
-login_form.subheader('---')
+login_form.subheader('Login Form')
 username = login_form.text_input('Username').lower()
 password = login_form.text_input('Password', type='password')
 
