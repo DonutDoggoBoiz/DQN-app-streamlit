@@ -1,16 +1,17 @@
 import streamlit as st
 
-# st.markdown("# View, Edit, Delete Model 🛠️")
-# st.sidebar.markdown("# CRUD model 🛠️")
-
 st.set_page_config(
     page_title="Ex-stream-ly Cool App",
     page_icon="🧊",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "# This is a header. This is an *extremely* cool app!"
-    }
-)
+                'Get Help': 'https://www.extremelycoolapp.com/help',
+                'Report a bug': "https://www.extremelycoolapp.com/bug",
+                'About': "# This is a header. This is an *extremely* cool app!"
+                }
+                    )
+
+st.markdown("## View, Edit, Delete Model 🛠️")
+st.sidebar.markdown("### CRUD model 🛠️")
+st.write("test st.set_page_config")
