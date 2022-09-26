@@ -10,6 +10,7 @@ import datetime
 
 # --- PRICE FETCHING MODULE ---
 def fetch_price_data():
+  global df_price, df_length
   stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
   start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
   end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
@@ -20,7 +21,7 @@ def fetch_price_data():
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
   df_length = df_price['Close'].count()
-  return df_price, df_length
+  #return df_price, df_length
   
 def observe_price():
   #alt chart with scale
@@ -37,12 +38,13 @@ def observe_price():
 
   #show split slider widget
   st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
+  global split_point
   split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
   train_size_pct = (split_point/df_length)*100
   test_size_pct = 100-train_size_pct
   st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
   st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
-  return split_point
+  #return split_point
   
 
 def split_dataset():
