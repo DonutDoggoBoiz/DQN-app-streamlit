@@ -173,6 +173,6 @@ def last10_history():  # ********
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
     
 # -------------------------------------- USER INTERFACE -------------------------- #
-get_price button = st.checkbox("Get Price")
+get_price_button = st.checkbox("Get Price")
 if get_price_button:
   fetch_price_data()
