@@ -48,9 +48,10 @@ def observe_price():
   
 
 def split_dataset():
+  global train_prices, test_prices
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
-  return train_prices, test_prices
+  #return train_prices, test_prices
   
 # --- MACHINE LEARNING MODULE ---
 ## --- parameters setting ---
@@ -126,7 +127,8 @@ def train_model():
   ## --- loop through episodes
   for i in range(n_episodes):
       ### --- start episode --- ###
-      print ("---------- Episode " + str(i+1) + " / " + str(n_episodes) + ' ----------' )
+      #print ("---------- Episode " + str(i+1) + " / " + str(n_episodes) + ' ----------' )
+      st.write("---------- Episode " + str(i+1) + " / " + str(n_episodes) + ' ----------' )
 
       # slider window
       start_tick = window_size
@@ -209,7 +211,40 @@ def reshape_history():
 def last10_history():  # ********
   for i in range(n_episodes-10,n_episodes):
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
-    
+
+# --------------------- TRAIN PARAMETERS --------------------------#
+### --- environment parameters
+action_space = 2
+window_size = 5
+n_episodes = 5
+
+### --- agent parameters
+agent_gamma = 0.99 
+agent_epsilon = 1.0
+agent_epsilon_dec = 0
+agent_epsilon_end = 0.01
+agent_lr = 0.001
+
+### --- trading parameters
+initial_balance = 1000000
+trading_size_pct = 10
+commission_fee_pct = 0.157
+trade_size = (trading_size_pct/100) * initial_balance
+commission_fee = (commission_fee_pct/100) * 1.07
+
+### --- episodic History
+total_acc_reward_history = []
+end_balance_history = []
+eps_history = []
+
+### --- trading History
+acc_reward_history = []
+action_history = []
+account_balance_history = []
+nom_return_history = []
+real_return_history = []
+
+
 # -------------------------------------- USER INTERFACE -------------------------- #
 get_price_button = st.checkbox("Get Price")
 if get_price_button:
@@ -238,6 +273,7 @@ if get_price_button:
         train_button = st.checkbox("Let's Train")
         if train_button:
           st.write("Training......")
-          st.write("train train train train train -------")
+          #st.write("train train train train train -------")
+          train_model()
           st.write("Training.....DONE!")
 
