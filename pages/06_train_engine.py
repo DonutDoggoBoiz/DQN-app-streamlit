@@ -195,6 +195,10 @@ def train_model():
       total_acc_reward_history.append(acc_reward)
       end_balance_history.append(account_balance)
       eps_history.append(agent.epsilon)
+      
+  record_num = np.array(action_history).shape[0]
+  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  st.line_chart(np_acc_reward_history[-1])
 
 # --- reshape history data to array ---
 def reshape_history():
@@ -216,7 +220,7 @@ def last10_history():  # ********
 ### --- environment parameters
 action_space = 2
 window_size = 5
-n_episodes = 5
+n_episodes = 2
 
 ### --- agent parameters
 agent_gamma = 0.99 
