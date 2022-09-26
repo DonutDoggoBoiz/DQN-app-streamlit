@@ -264,7 +264,9 @@ if get_price_button:
     if split_button:
       st.write("Spliting.........")
       split_dataset()
+      st.write("Train dataset")
       st.line_chart(df_price_train)
+      st.write("Test dataset")
       st.line_chart(df_price_test)
       st.write("Spliting......... DONE!")
       set_param_button = st.checkbox("Set Parameters")
