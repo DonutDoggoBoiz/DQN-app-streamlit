@@ -16,7 +16,7 @@ if 'passwords' not in st.session_state:
 #  users = ['admin']
 #  passwords = ['admin']
 
-st.title("Simple Login App")
+st.title("### Login Page 🔑")
 
 # --- login form
 login_form = st.form('Login')
