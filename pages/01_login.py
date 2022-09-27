@@ -16,8 +16,10 @@ if 'passwords' not in st.session_state:
 #  users = ['admin']
 #  passwords = ['admin']
 
-st.title("### Login Page 🔑")
+# st.title("Login Page 🔑")
 
+
+st.markdown("##Login Page 🔑")
 # --- login form
 login_form = st.form('Login')
 login_form.subheader('Login Form')
