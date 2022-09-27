@@ -9,7 +9,7 @@ st.sidebar.markdown('## Create Model 💡')
 
 st.write("## Set these following parameters for your trading model")
 st.write("### Model parameters")
-agent_name = st.text_input("Model name: ", "model_01"
+agent_name = st.text_input("Model name: ", "model_01")
 agent_gamma = st.slider("Gamma: ", 0.00, 1.00, 0.90)
 agent_epsilon = st.slider("Starting epsilon: ", 0.00, 1.00, 1.00)
 agent_epsilon_dec = st.select_slider("Epsilon decline rate: ", options=[0.001,0.002,0.005,0.010], value=0.001)
