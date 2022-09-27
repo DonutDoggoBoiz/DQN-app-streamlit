@@ -2,6 +2,7 @@ import streamlit as st
 import datetime
 import yfinance as yf
 import altair as alt
+import numpy as np
 
 st.markdown("# Generate Advice 📈")
 st.sidebar.markdown("# Generate Advice 📈")
