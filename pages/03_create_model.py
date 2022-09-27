@@ -23,7 +23,7 @@ commission_fee_pct = st.number_input("Commission fee as percent rate:", min_valu
 
 set_param_button = st.button("Set Parameters")
 if set_param_button:
-        st.write("Your model is successfully created with these parameters..."
+        st.write("Your model is successfully created with these parameters...")
         st.write("### Model parameters")
         st.write("Model name: {}".format(agent_name) )
         st.write("Gamma: {}".format(agent_gamma) )
