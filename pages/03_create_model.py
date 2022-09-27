@@ -20,7 +20,7 @@ agent_lr = st.select_slider("Learning rate: ", options=[0.001, 0.002, 0.005, 0.0
 st.write("### Trading parameters")
 initial_balance = st.number_input("Initial account balance (THB):", min_value=0, step=1000, value=1000000)
 trading_size_pct = st.slider("Trading size as a percentage of trading account (%):", 0, 100, 10)
-commission_fee_pct = st.number_input("Commission fee as percent rate (%):", min_value=0.000, step=0.001, value=0.157)
+commission_fee_pct = st.number_input("Commission fee as percent rate (%):", min_value=0.000, step=0.001, value=0.157, format=%.3f)
 
 set_param_button = st.button("Set Parameters")
 if set_param_button:
