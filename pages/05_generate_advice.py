@@ -32,7 +32,9 @@ if generate_advice_button:
             .interactive()
         )
   st.altair_chart(c, use_container_width=True)
-
-  st.write('Model recommend: BUY    or   SELL')
-  st.success('Model recommend: BUY')
-  st.error('Model recommend: SELL')
+  
+  rand_num = np.random.randn()
+  if rand_num > 0:
+    st.success('Model recommend: BUY')
+  else:
+    st.error('Model recommend: SELL')
