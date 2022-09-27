@@ -22,6 +22,7 @@ if generate_advice_button:
                         end=end_date,
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+  last_price = df_price['Close'][-1]
 
   c = (alt.Chart(df_price['Close'].reset_index() 
                 )
@@ -36,6 +37,6 @@ if generate_advice_button:
   
   rand_num = np.random.randn()
   if rand_num > 0:
-    st.success('Model recommend: BUY')
+    st.success('Model recommend: BUY at current price of {}'.format(last_price) )
   else:
-    st.error('Model recommend: SELL')
+    st.error('Model recommend: SELL at current price of {}'.format(last_price) )
