@@ -37,7 +37,8 @@ if generate_advice_button:
   st.altair_chart(c, use_container_width=True)
   
   rand_num = np.random.randn()
+  st.write('Model recommend: ')
   if rand_num > 0:
-    st.success('Model recommend: BUY at current price of {}'.format(last_price) )
+    st.success('#### BUY at current price of {}'.format(last_price) )
   else:
-    st.error('Model recommend: SELL at current price of {}'.format(last_price) )
+    st.error('#### SELL at current price of {}'.format(last_price) )
