@@ -1,57 +1,38 @@
 import streamlit as st
 import altair as alt
-# import matplotlib.pyplot as plt
 import datetime
 import numpy as np
 import pandas as pd
-import yfinance as yf
-
-# st.markdown("# Create MODEL 🚀")
-# st.sidebar.markdown("# Create Model 🚀")
 
 st.title('Create DQN Trading Model 💡')
 st.sidebar.markdown('## Create Model 💡')
 
+st.write("## Set these following parameters for your trading model")
+st.write("### Model parameters")
+agent_name = st.text_input("Model name: ", "model_01"
+agent_gamma = st.slider("Gamma: ", 0.00, 1.00, 0.90)
+agent_epsilon = st.slider("Starting epsilon: ", 0.00, 1.00, 1.00)
+agent_epsilon_dec = st.select_slider("Epsilon decline rate: ", options=[0.001,0.002,0.005,0.010], value=0.001)
+agent_epsilon_end = st.slider("Minimum epsilon: ", 0.01, 0.10, 0.01)
+agent_lr = st.select_slider("Learning rate: ", options=[0.001, 0.002, 0.005, 0.010], value=0.001)
+
+st.write("### Trading parameters")
+initial_balance = st.number_input("Initial account balance:", min_value=0, step=1000, value=1000000)
+trading_size_pct = st.slider("Trading size as a percentage of trading account:", 0, 100, 10)
+commission_fee_pct = st.number_input("Commission fee as percent rate:", min_value=0, step=0.001, value=0.157)
+
 set_param_button = st.button("Set Parameters")
 if set_param_button:
-        st.write("#### Create a form of widgets to set parameters")
-        st.write("Setting parameters .....")
-        #set_parameters()
-        #st.write("action_space: {}".format(action_space) ) 
-        #st.write("window_size: {}".format(window_size) ) 
-        #st.write("n_episode: {}".format(n_episodes) )
-        st.write("Setting parameters A")
-        st.write("Setting parameters B")
-        st.write("Setting parameters C")
-        '''
-        --- environment parameters
-        action_space = 2
-        window_size = 5
-        n_episodes = 2
+        st.write("Your model is successfully created with these parameters..."
+        st.write("### Model parameters")
+        st.write("Model name: {}".format(agent_name) )
+        st.write("Gamma: {}".format(agent_gamma) )
+        st.write("Starting epsilon: {}".format(agent_epsilon) )
+        st.write("Epsilon decline rate: {}".format(agent_epsilon_dec) )
+        st.write("Minimum epsilon: {}".format(agent_epsilon_end) )
+        st.write("Learning rate: {}".format(agent_lr) )
 
-        --- agent parameters
-        agent_gamma = 0.99 
-        agent_epsilon = 1.0
-        agent_epsilon_dec = 0
-        agent_epsilon_end = 0.01
-        agent_lr = 0.001
-
-        --- trading parameters
-        initial_balance = 1000000
-        trading_size_pct = 10
-        commission_fee_pct = 0.157
-        trade_size = (trading_size_pct/100) * initial_balance
-        commission_fee = (commission_fee_pct/100) * 1.07
-
-        --- episodic History
-        total_acc_reward_history = []
-        end_balance_history = []
-        eps_history = []
-
-        --- trading History
-        acc_reward_history = []
-        action_history = []
-        account_balance_history = []
-        nom_return_history = []
-        real_return_history = []
-        '''
+        st.write("### Trading parameters")
+        st.write("Initial account balance:      {} ฿".format(initial_balance) )
+        st.write("Trading size:                 {}%".format(trading_size_pct) )
+        st.write("Commission fee:               {}%".format(commission_fee_pct) )
