@@ -6,6 +6,7 @@ import numpy as np
 
 st.markdown("# Generate Advice 📈")
 st.sidebar.markdown("# Generate Advice 📈")
+st.success("### BIG SUCCESS")
 
 selected_model = st.selectbox('Choose your model',
                               options=['BBL_01', 'BBL_02', 'PTT_07']
