@@ -175,7 +175,7 @@ def train_model():
             acc_reward += reward
             if trade_exposure == False:
               last_buy.append(train_prices[current_tick])     # memorize bought price
-              account_balance -= trade_size * commission_fee  # pay fees on purchase
+              #account_balance -= trade_size * commission_fee  # pay fees on purchase
               trade_exposure = True 
 
         elif action == 0: # sell
@@ -185,7 +185,7 @@ def train_model():
               return_pct = (train_prices[current_tick] - last_buy[-1]) / last_buy[-1]   # profit/loss percentage on investment
               market_value = (return_pct+1) * trade_size                                # market value of investment
               nom_return = return_pct * trade_size
-              real_return = (return_pct * trade_size) - (market_value * commission_fee)
+              real_return = (return_pct * trade_size) - (market_value * commission_fee) - (trade_size * commission_fee)
               account_balance += real_return
               nom_return_history.append([int(current_tick),nom_return])
               real_return_history.append([int(current_tick),real_return])
