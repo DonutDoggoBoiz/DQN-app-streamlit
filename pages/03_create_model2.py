@@ -1,4 +1,5 @@
 import streamlit as st
+import datetime
 from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model
   
 ### ------------ INTERFACE ------------ ###
