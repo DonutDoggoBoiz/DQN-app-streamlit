@@ -8,7 +8,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["Select Data 📈", "Parameters 💡", "Train 
 with tab1:
     st.header("Select stock and price range 📈")
     fetch_price_data()
-    observe_button = st.checkbox('Observe Dataset🔍')
+    observe_button = st.checkbox('Observe Dataset 🔍')
     if observe_button:
       observe_price()
       split_button = st.checkbox("Split dataset ✂️")
