@@ -12,8 +12,11 @@ import datetime
 def fetch_price_data():
   global df_price, df_length
   stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
-  start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
-  end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
+  dt_dt = datetime.date.today()
+  #start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
+  #end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
+  start_date = st.date_input("Select start date: ", dt_dt)
+  end_date = st.date_input("Select end date: ", datetime.date( dt_dt.year()-1, dt_dt.month(), dt_dt.day() ) )
   stock_code = stock_name + '.BK'
   df_price = yf.download(stock_code,
                         start=start_date,
