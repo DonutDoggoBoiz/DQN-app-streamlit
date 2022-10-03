@@ -133,8 +133,31 @@ def set_parameters():
 # --- TRAINING MODULE ---
 ## --- initialize agent object
 def train_model():
-  agent = Agent(
-                gamma=agent_gamma, 
+  ### --- environment parameters
+  action_space = 2      # consist of 0(Sell) , 1(Buy)
+  window_size = 5      # n-days of prices used as observation or state
+  n_episodes = 5      # 10ep use around 6 mins
+
+  ### --- trading parameters
+  #initial_balance = 1000000
+  #trading_size_pct = 10
+  #commission_fee_pct = 0.157
+  trade_size = (trading_size_pct/100) * initial_balance
+  commission_fee = (commission_fee_pct/100) * 1.07
+
+  ### --- episodic History
+  total_acc_reward_history = []
+  end_balance_history = []
+  eps_history = []
+
+  ### --- trading History
+  acc_reward_history = []
+  action_history = []
+  account_balance_history = []
+  nom_return_history = []
+  real_return_history = []
+  
+  agent = Agent(gamma=agent_gamma, 
                 epsilon=agent_epsilon, 
                 epsilon_dec=agent_epsilon_dec,
                 lr=agent_lr, 
@@ -227,6 +250,8 @@ def train_model():
   st.write('Account Balance History of last episode')
   st.line_chart(np.transpose(np_account_balance_history)) #[-1])
 
+  
+  
 # --- reshape history data to array ---
 def reshape_history():
   record_num = np.array(action_history).shape[0]
