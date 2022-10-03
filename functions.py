@@ -57,8 +57,6 @@ def split_dataset():
   global df_price_train, df_price_test, train_prices, test_prices
   df_price_train = df_price[:split_point]
   df_price_test = df_price[split_point:]
-  #train_prices = df_price['Close'][:split_point].to_numpy()
-  #test_prices = df_price['Close'][split_point:].to_numpy()
   train_prices = df_price_train.to_numpy()
   test_prices = df_price_test.to_numpy()
   alt_train = alt.Chart(df_price_train['Close'].reset_index()).mark_line().encode(x = alt.X('Date'), 
@@ -71,11 +69,30 @@ def split_dataset():
                       tooltip=['Date','Close'] ).interactive()
   st.write("Train dataset")
   # st.line_chart(df_price_train)
-  st.altair_chart(alt_train, use_container_width=False)
+  st.altair_chart(alt_train, use_container_width=True)
   st.write("Test dataset")
-  st.altair_chart(alt_test, use_container_width=False)
+  st.altair_chart(alt_test, use_container_width=True)
   st.write("Spliting......... DONE!")
   #return train_prices, test_prices
+  
+def split_dataset2():
+  global df_price_train, df_price_test, train_prices, test_prices
+  df_price['split'] = 'split'
+  df_price.loc[:split_point, 'split'] = 'train'
+  df_price.loc[split_point:, 'split'] = 'test'
+  df_price_train = df_price[:split_point]
+  df_price_test = df_price[split_point:]
+  train_prices = df_price_train.to_numpy()
+  test_prices = df_price_test.to_numpy()
+  alt_split = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(x = alt.X('Date'), 
+                      y = alt.Y('Close', 
+                      color = 'split' ,
+                      scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                      tooltip=['Date','Close'] ).interactive()
+  st.write("Splited dataset")
+  # st.line_chart(df_price_train)
+  st.altair_chart(alt_train, use_container_width=True)
+  st.write("Spliting......... DONE!")
   
 ### ------ MACHINE LEARNING MODULE ------ ###
 ## --- parameters setting --- ##
