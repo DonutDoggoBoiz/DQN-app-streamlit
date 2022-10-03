@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime
-from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model
+from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2
 
 ### ------------ INTERFACE ------------ ###
 tab1, tab2, tab3, tab4 = st.tabs(["Select Data 📈", "Parameters 💡", "Train Model 🚀", "Test Model 🧪"])
@@ -14,7 +14,7 @@ with tab1:
       split_button = st.checkbox("Split dataset ✂️")
       if split_button:
         st.write("Spliting.........")
-        split_dataset()
+        split_dataset2()
 
 with tab2:
     st.header("Set parameters for your trading model 💡")
