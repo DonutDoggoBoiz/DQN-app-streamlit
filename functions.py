@@ -12,10 +12,10 @@ import datetime
 def fetch_price_data():
   global df_price, df_length
   stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
-  int_year = int(datetime.date.today().day)
+  int_year = int(datetime.date.today().year)
   int_last_year = int(datetime.date.today().year) - 1
   int_month = int(datetime.date.today().month)
-  int_day = int(datetime.date.today().year)
+  int_day = int(datetime.date.today().day)
   #start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
   #end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
   start_date = st.date_input("Select start date: ", datetime.date( int_last_year, int_month, int_day) )
