@@ -55,10 +55,12 @@ def observe_price():
 
 def split_dataset():
   global df_price_train, df_price_test, train_prices, test_prices
-  df_price_train = df_price['Close'][:split_point]
-  df_price_test = df_price['Close'][split_point:]
-  train_prices = df_price['Close'][:split_point].to_numpy()
-  test_prices = df_price['Close'][split_point:].to_numpy()
+  df_price_train = df_price[:split_point]
+  df_price_test = df_price[split_point:]
+  #train_prices = df_price['Close'][:split_point].to_numpy()
+  #test_prices = df_price['Close'][split_point:].to_numpy()
+  train_prices = df_price_train.to_numpy()
+  test_prices = df_price_test.to_numpy()
   atl_train = alt.Chart(df_price_train['Close'].reset_index()).mark_line().encode(x = alt.X('Date'), 
                       y = alt.Y('Close', 
                       scale=alt.Scale(domain=[df_price_train['Close'].min()-10, df_price_train['Close'].max()+10]) ) ,
