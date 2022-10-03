@@ -1,7 +1,7 @@
 import streamlit as st
 import datetime
 from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model
-  
+
 ### ------------ INTERFACE ------------ ###
 tab1, tab2, tab3, tab4 = st.tabs(["Select Data 📈", "Parameters 💡", "Train Model 🚀", "Test Model 🧪"])
 
