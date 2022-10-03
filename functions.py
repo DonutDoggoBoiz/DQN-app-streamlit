@@ -85,9 +85,8 @@ def split_dataset2():
   train_prices = df_price_train.to_numpy()
   test_prices = df_price_test.to_numpy()
   alt_split = alt.Chart(df_price['Close'].reset_index()).mark_line().encode(x = alt.X('Date'), 
-                      y = alt.Y('Close', 
+                      y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       color = 'split' ,
-                      scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       tooltip=['Date','Close'] ).interactive()
   st.write("Splited dataset")
   # st.line_chart(df_price_train)
