@@ -98,7 +98,8 @@ def split_dataset2():
 def set_parameters():
 # st.title('Create DQN Trading Model 💡')
 # st.sidebar.markdown('## Create Model 💡')
-  st.write("#### Set these following parameters for your trading model")
+  #st.write("#### Set these following parameters for your trading model")
+  global agent_name, agent_gamma, agent_epsilon, agent_epsilon_dec, agent_epsilon_end, agent_lr, initial_balance, trading_size_pct, commission_fee_pct
   st.write("##### Model parameters")
   agent_name = st.text_input("Model name: ", "model_01")
   agent_gamma = st.slider("Gamma: ", 0.00, 1.00, 0.90)
