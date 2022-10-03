@@ -82,8 +82,8 @@ def split_dataset2():
   df_price.loc[split_point:, 'split'] = 'test'
   df_price_train = df_price[:split_point]
   df_price_test = df_price[split_point:]
-  train_prices = df_price_train.to_numpy()
-  test_prices = df_price_test.to_numpy()
+  train_prices = df_price_train['Close'].to_numpy()
+  test_prices = df_price_test['Close'].to_numpy()
   alt_split = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
                       y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       color = 'split' ,
@@ -136,7 +136,7 @@ def train_model():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
-  n_episodes = 5      # 10ep use around 6 mins
+  n_episodes = 2      # 10ep use around 6 mins
 
   ### --- trading parameters
   #initial_balance = 1000000
