@@ -15,8 +15,8 @@ def fetch_price_data():
   dt_dt = datetime.date.today()
   #start_date = st.date_input("Select start date: ", datetime.date(2021, 9, 20))
   #end_date = st.date_input("Select end date: ", datetime.date(2022, 9, 20))
-  start_date = st.date_input("Select start date: ", datetime.date( int(dt_dt.year()-1), int(dt_dt.month()), int(dt_dt.day()) ) )
-  end_date = st.date_input("Select end date: ", datetime.date( dt_dt.year(), dt_dt.month(), dt_dt.day() ) )
+  start_date = st.date_input("Select start date: ", datetime.date( dt_dt.year-1, dt_dt.month, dt_dt.day() ) )
+  end_date = st.date_input("Select end date: ", datetime.date( dt_dt.year, dt_dt.month, dt_dt.day ) )
   stock_code = stock_name + '.BK'
   df_price = yf.download(stock_code,
                         start=start_date,
