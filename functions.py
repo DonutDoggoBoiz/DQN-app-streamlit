@@ -59,6 +59,11 @@ def split_dataset():
   df_price_test = df_price['Close'][split_point:]
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
+  st.write("Train dataset")
+  st.line_chart(df_price_train)
+  st.write("Test dataset")
+  st.line_chart(df_price_test)
+  st.write("Spliting......... DONE!")
   #return train_prices, test_prices
   
 ### ------ MACHINE LEARNING MODULE ------ ###
