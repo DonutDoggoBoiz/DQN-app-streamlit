@@ -15,12 +15,6 @@ with tab1:
       if split_button:
         st.write("Spliting.........")
         split_dataset()
-        st.write("Train dataset")
-        st.line_chart(df_price_train)
-        st.write("Test dataset")
-        st.line_chart(df_price_test)
-        st.write("Spliting......... DONE!")
-        set_param_button = st.checkbox("Set Parameters")
 
 with tab2:
     st.header("Set parameters for your trading model 💡")
