@@ -59,10 +59,23 @@ def split_dataset():
   df_price_test = df_price['Close'][split_point:]
   train_prices = df_price['Close'][:split_point].to_numpy()
   test_prices = df_price['Close'][split_point:].to_numpy()
+  atl_train = alt.Chart(df_price_train['Close'].reset_index() )
+          .mark_line()
+          .encode(x = alt.X('Date') ,
+                  y = alt.Y('Close', scale=alt.Scale(domain=[df_price_train['Close'].min()-10, df_price_train['Close'].max()+10]) ) ,
+                  tooltip=['Date','Close'] )
+          .interactive()
+  atl_test = alt.Chart(df_price_test['Close'].reset_index() )
+          .mark_line()
+          .encode(x = alt.X('Date') ,
+                  y = alt.Y('Close', scale=alt.Scale(domain=[df_price_train['Close'].min()-10, df_price_train['Close'].max()+10]) ) ,
+                  tooltip=['Date','Close'] )
+          .interactive()
   st.write("Train dataset")
-  st.line_chart(df_price_train)
+  # st.line_chart(df_price_train)
+  st.altair_chart(alt_train, use_container_width=True)
   st.write("Test dataset")
-  st.line_chart(df_price_test)
+  st.altair_chart(alt_test, use_container_width=True)
   st.write("Spliting......... DONE!")
   #return train_prices, test_prices
   
