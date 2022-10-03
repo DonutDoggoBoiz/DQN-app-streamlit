@@ -71,9 +71,9 @@ def split_dataset():
                       tooltip=['Date','Close'] ).interactive()
   st.write("Train dataset")
   # st.line_chart(df_price_train)
-  st.altair_chart(alt_train, use_container_width=True)
+  st.altair_chart(alt_train, use_container_width=False)
   st.write("Test dataset")
-  st.altair_chart(alt_test, use_container_width=True)
+  st.altair_chart(alt_test, use_container_width=False)
   st.write("Spliting......... DONE!")
   #return train_prices, test_prices
   
