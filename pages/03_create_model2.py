@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime
-from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2
+from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2, test_model
 
 ### ------------ INTERFACE ------------ ###
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Select Data 📈", "Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾"])
@@ -32,7 +32,8 @@ with tab4:
     st.header("Test your model on test set 🧪")
     test_button = st.button("Start Testing 🏹")
     if test_button:
-      st.write("Test Result")
+        st.write("Test Result")
+        test_model()
     
 with tab5:
     st.header("Save your model")
