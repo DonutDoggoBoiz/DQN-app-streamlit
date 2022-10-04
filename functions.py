@@ -376,8 +376,8 @@ def test_model():
       
   ### --- end of all episodes --- ###
   record_num = np.array(action_history).shape[0]
-  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
-  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
+  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
   st.write('Reward History of testing episode')
   st.line_chart(np.transpose(np_eval_acc_reward_history)) #[-1])
   #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
