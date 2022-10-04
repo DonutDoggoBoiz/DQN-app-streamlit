@@ -111,8 +111,8 @@ def set_parameters():
 
   st.write("##### Trading parameters")
   initial_balance = st.number_input("Initial account balance (THB):", min_value=0, step=1000, value=1000000)
-  trading_size_pct = st.slider("Trading size as a percentage of trading account (%):", 0, 100, 10)
-  commission_fee_pct = st.number_input("Commission fee as percent rate (%):", min_value=0.000, step=0.001, value=0.157, format='%1.3f')
+  trading_size_pct = st.slider("Trading size as a percentage of initial account balance (%):", 0, 100, 10)
+  commission_fee_pct = st.number_input("Commission fee (%):", min_value=0.000, step=0.001, value=0.157, format='%1.3f')
 
   set_param_button = st.button("Set Parameters")
   if set_param_button:
@@ -234,7 +234,7 @@ def train_model():
           #print ("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
           #print ("-----------------------------------------")
           st.write("---Episode {} of {} done...".format(i+1, n_episodes) )
-          st.write("---Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
+          st.write("---Total Reward: {:.2f} | Account_Balance: {:.2f}".format(acc_reward, account_balance) )
         ### --- end of 1 episode --- ###
 
           total_acc_reward_history.append(acc_reward)
@@ -367,7 +367,7 @@ def test_model():
           #print ("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
           #print ("-----------------------------------------")
           st.write("---Episode {} of {} done...".format(i+1, x_episodes) )
-          st.write("---Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
+          st.write("---Total Reward: {:.2f} | Account_Balance: {:.2f}".format(acc_reward, account_balance) )
         ### --- end of 1 episode --- ###
 
           eval_total_acc_reward_history.append(acc_reward)
