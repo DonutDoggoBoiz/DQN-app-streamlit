@@ -156,6 +156,7 @@ def train_model():
   nom_return_history = []
   real_return_history = []
   
+  global agent
   agent = Agent(gamma=agent_gamma, 
                 epsilon=agent_epsilon, 
                 epsilon_dec=agent_epsilon_dec,
