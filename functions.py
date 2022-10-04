@@ -130,8 +130,7 @@ def set_parameters():
           st.write("Trading size:                 {}%".format(trading_size_pct) )
           st.write("Commission fee:               {}%".format(commission_fee_pct) )
 
-# --- TRAINING MODULE ---
-## --- initialize agent object
+### ------ TRAINING MODULE ------ ###
 def train_model():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
@@ -247,6 +246,10 @@ def train_model():
   np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   st.write('Reward History of last episode')
   st.line_chart(np.transpose(np_acc_reward_history)) #[-1])
+  #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
+                      #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                      #color = 'split' ,
+                      #tooltip=['Date','Close','split'] ).interactive()
   st.write('Account Balance History of last episode')
   st.line_chart(np.transpose(np_account_balance_history)) #[-1])
 
@@ -267,3 +270,118 @@ def reshape_history():
 def last10_history():  # ********
   for i in range(n_episodes-10,n_episodes):
     pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
+    
+    
+### ------ TESTING MODULE ------ ###
+def test_model():
+  ### --- environment parameters
+  action_space = 2      # consist of 0(Sell) , 1(Buy)
+  window_size = 5      # n-days of prices used as observation or state
+  x_episodes = 2      # 10ep use around 6 mins
+
+  ### --- trading parameters
+  #initial_balance = 1000000
+  #trading_size_pct = 10
+  #commission_fee_pct = 0.157
+  trade_size = (trading_size_pct/100) * initial_balance
+  commission_fee = (commission_fee_pct/100) * 1.07
+
+  ### --- episodic History
+  eval_total_acc_reward_history = []
+  eval_end_balance_history = []
+  eval_eps_history = []
+
+  ### --- trading History
+  eval_acc_reward_history = []
+  eval_action_history = []
+  eval_account_balance_history = []
+  eval_nom_return_history = []
+  eval_real_return_history = []
+
+  ## --- loop through episodes
+  for i in range(x_episodes):
+      ### --- start episode --- ###
+      #print ("---------- Episode " + str(i+1) + " / " + str(x_episodes) + ' ----------' )
+      st.write("--- Episode " + str(i+1) + " / " + str(x_episodes) + ' ---' )
+
+      # slider window
+      start_tick = window_size
+      end_tick = len(test_prices) - 2 
+      current_tick = start_tick
+      ##last_trade_tick = current_tick - 1
+      done = False
+
+      # bundle test_prices data into state and new_state
+      state = test_prices[ (current_tick - window_size) : current_tick ]
+      new_state = test_prices[ (current_tick - window_size) + 1 : current_tick+1 ]
+
+      # initiate episodial variables
+      acc_reward = 0
+      account_balance = initial_balance
+      trade_exposure = False
+      trade_exposure_ledger = []
+      last_buy = []
+
+      while not done:
+        pred_action = agent.q_eval.predict(np.array([state]))
+        action = np.argmax(pred_action)
+
+        if action == 1: # buy
+            reward = test_prices[current_tick+1] - test_prices[current_tick]
+            acc_reward += reward
+            if trade_exposure == False:
+              last_buy.append(test_prices[current_tick])     # memorize bought price
+              #account_balance -= trade_size * commission_fee  # pay fees on purchase
+              trade_exposure = True 
+
+        elif action == 0: # sell
+            reward = test_prices[current_tick] - test_prices[current_tick+1]
+            acc_reward += reward
+            if trade_exposure == True:
+              return_pct = (test_prices[current_tick] - last_buy[-1]) / last_buy[-1]   # profit/loss percentage on investment
+              market_value = (return_pct+1) * trade_size                                # market value of investment
+              nom_return = return_pct * trade_size
+              real_return = (return_pct * trade_size) - (market_value * commission_fee) - (trade_size * commission_fee)
+              account_balance += real_return
+              eval_nom_return_history.append([int(current_tick),nom_return])
+              eval_real_return_history.append([int(current_tick),real_return])
+              trade_exposure = False
+
+        done = True if current_tick == end_tick else False
+
+        #agent.store_transition(state, action, reward, new_state, done)
+        #agent.learn()
+
+        current_tick += 1
+        state = new_state
+        new_state = test_prices[ (current_tick - window_size) + 1 : current_tick+1 ]
+
+        # append history lists
+        eval_acc_reward_history.append(acc_reward)
+        eval_action_history.append(action)
+        eval_account_balance_history.append(account_balance)
+
+        if done: 
+          # print ("-----------------------------------------")
+          #print ("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
+          #print ("-----------------------------------------")
+          st.write("---Episode {} of {} done...".format(i+1, n_episodes) )
+          st.write("---Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
+        ### --- end of 1 episode --- ###
+
+          eval_total_acc_reward_history.append(acc_reward)
+          eval_end_balance_history.append(account_balance)
+          eval_eps_history.append(agent.epsilon)
+      
+  ### --- end of all episodes --- ###
+  record_num = np.array(action_history).shape[0]
+  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  st.write('Reward History of testing episode')
+  st.line_chart(np.transpose(np_eval_acc_reward_history)) #[-1])
+  #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
+                      #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                      #color = 'split' ,
+                      #tooltip=['Date','Close','split'] ).interactive()
+  st.write('Account Balance History of testing episode')
+  st.line_chart(np.transpose(np_eval_account_balance_history)) #[-1])
