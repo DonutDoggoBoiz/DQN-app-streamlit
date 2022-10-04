@@ -375,7 +375,7 @@ def test_model():
           eval_eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
-  record_num = np.array(action_history).shape[0]
+  record_num = np.array(eval_action_history).shape[0]
   np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
   np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
   st.write('Reward History of testing episode')
