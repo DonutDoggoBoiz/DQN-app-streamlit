@@ -3,7 +3,7 @@ import datetime
 from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2, test_model, save_model
 
 ### ------------ INTERFACE ------------ ###
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Select Data 📈", "Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["### Select Data 📈", "Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"])
 
 with tab1:
     st.header("Select stock and price range 📈")
@@ -45,7 +45,6 @@ with tab5:
         
 with tab6:
     st.header("PENDING adjustment...")
-    st.write("###markdown")
     st.success("select data = DONE")
     st.warning("parameter -- adjust interface and input choice")
     st.warning("parameter -- add info to each input")
