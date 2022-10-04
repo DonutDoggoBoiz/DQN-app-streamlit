@@ -386,3 +386,7 @@ def test_model():
                       #tooltip=['Date','Close','split'] ).interactive()
   st.write('Account Balance History of testing episode')
   st.line_chart(np.transpose(np_eval_account_balance_history)) #[-1])
+
+def save_model():
+  #save_path = "models/" + str(agent.model_file)
+  agent.q_eval.save('models/' + 'h5_file.h5')
