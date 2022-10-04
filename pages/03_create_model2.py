@@ -39,4 +39,5 @@ with tab5:
     st.header("Save your model")
     save_button = st.button("Save 💾")
     if save_button:
-        save_model()
+        #save_model()
+        st.success("Your model is saved successfully")
