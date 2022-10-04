@@ -48,9 +48,9 @@ with tab6:
     st.success("select data = DONE")
     st.warning("parameter -- adjust interface and input choice")
     st.warning("parameter -- add info to each input")
-    st.warning("train model -- add input field for n_episodes"
-    st.warning("test model -- better result visualization"
-    st.warning("save model -- integrate to cloud infrastructure"
+    st.warning("train model -- add input field for n_episodes")
+    st.warning("test model -- better result visualization")
+    st.warning("save model -- integrate to cloud infrastructure")
     st.warning("generate advice -- add load_model function")
     st.warning("generate advice -- compulsory stock quote")
     st.warning("generate advice -- formally written buy/sell advice")
