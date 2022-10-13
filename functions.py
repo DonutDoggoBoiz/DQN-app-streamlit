@@ -46,9 +46,10 @@ def observe_price():
                 )
           .mark_line()
           .encode(x = alt.X('Date') ,
-                  y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                  tooltip=[{'DDD':'Date'},{'PPP':'Close'}]
+                  y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) , 
+                  tooltip=[{'field':'Date','title':'DDD'}]
                  )
+          .tooltip
           .interactive()
       )
   st.altair_chart(c, use_container_width=True)
