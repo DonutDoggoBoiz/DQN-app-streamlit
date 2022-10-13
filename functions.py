@@ -8,9 +8,17 @@ import altair as alt
 import datetime
 # ---------------------------- #
 
+### ------------ MODEL DATABASE ------------ ###
+model_list = []
+model1 = {'username':'admin', 'model_name':'bbl_01', 'stock_quote':'bbl'.upper()}
+model2 = {'username':'admin', 'model_name':'ptt_04', 'stock_quote':'ptt'.upper()}
+model_list.append(model1)
+model_list.append(model2)
+model_df = pd.DataFrame(model_list)
+
 #### ------ PRICE FETCHING MODULE ------ ###
 def fetch_price_data():
-  global df_price, df_length
+  global stock_name, df_price, df_length
   stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
   int_year = int(datetime.date.today().year)
   int_last_year = int(datetime.date.today().year) - 1
@@ -26,6 +34,7 @@ def fetch_price_data():
                         end=end_date,
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
+  df_price['Price'] = df_price['Close']
   df_length = df_price['Close'].count()
   #return df_price, df_length
   
@@ -35,7 +44,7 @@ def observe_price():
                 )
           .mark_line()
           .encode(x = alt.X('Date') ,
-                  y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                  y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                   tooltip=['Date','Close']
                  )
           .interactive()
@@ -49,7 +58,8 @@ def observe_price():
   train_size_pct = (split_point/df_length)*100
   test_size_pct = 100-train_size_pct
   st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
-  st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
+  #st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
+  st.write('the training set is {:.2f}% of the dataset while the test set is {:.2f}%'.format(train_size_pct,test_size_pct) )
   #return split_point
   
 
@@ -60,11 +70,13 @@ def split_dataset():
   train_prices = df_price_train.to_numpy()
   test_prices = df_price_test.to_numpy()
   alt_train = alt.Chart(df_price_train['Close'].reset_index()).mark_line().encode(x = alt.X('Date'), 
-                      y = alt.Y('Close', 
+                      y = alt.Y('Close',
+                      title='Price',
                       scale=alt.Scale(domain=[df_price_train['Close'].min()-10, df_price_train['Close'].max()+10]) ) ,
                       tooltip=['Date','Close'] ).interactive()
   alt_test = alt.Chart(df_price_test['Close'].reset_index() ).mark_line().encode(x = alt.X('Date') ,
-                      y = alt.Y('Close', 
+                      y = alt.Y('Close',
+                      title='Price',
                       scale=alt.Scale(domain=[df_price_train['Close'].min()-10, df_price_train['Close'].max()+10]) ) ,
                       tooltip=['Date','Close'] ).interactive()
   st.write("Train dataset")
@@ -85,7 +97,7 @@ def split_dataset2():
   train_prices = df_price_train['Close'].to_numpy()
   test_prices = df_price_test['Close'].to_numpy()
   alt_split = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
-                      y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                      y = alt.Y('Close',title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       color = 'split' ,
                       tooltip=['Date','Close','split'] ).interactive()
   st.write("Splited dataset")
@@ -393,4 +405,7 @@ def test_model():
 
 def save_model():
   #save_path = "models/" + str(agent.model_file)
-  agent.q_eval.save('models/' + 'h5_file.h5')
+  #agent.q_eval.save('models/' + 'h5_file.h5')
+  new_model = {'username':username, 'model_name':agent_name, 'stock_quote':stock_name.upper()}
+  model_df.loc[len(model_df.index)] = new_model
+  st.write(model_df)
