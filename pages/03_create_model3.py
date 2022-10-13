@@ -3,6 +3,11 @@ import pandas as pd
 import datetime
 from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2, test_model, save_model
 
+def set_train_episodes():
+    global train_episodes
+    train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
+
+
 ### ------------ session state ------------ ###
 username = 'admin99'
 ### ------------ MODEL DATABASE ------------ ###
@@ -14,7 +19,8 @@ model_list.append(model2)
 model_df = pd.DataFrame(model_list)
 
 ### ------------ INTERFACE ------------ ###
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"])
+tab_list = ["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"]
+select_data_tab, set_para_tab, train_tab, test_tab, save_tab, pending_tab = st.tabs(tab_list)
 
 with tab1:
     st.header("Select stock and price range 📈")
@@ -38,7 +44,7 @@ with tab3:
     st.header("Train your model with train set 🚀")
     col1 , col2 = st.columns(2)
     with col1:
-        train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
+        set_train_episodes()
     with col2:
         st.write('  ')
         st.write('  ')
