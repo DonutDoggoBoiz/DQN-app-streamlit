@@ -74,7 +74,7 @@ def split_dataset2():
   alt_split = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
                       y = alt.Y('Close',title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       color = 'split' ,
-                      tooltip=['Date','Close'] ).interactive()
+                      tooltip=['Date','Close','split'] ).interactive()
   st.write("Splited dataset")
   st.altair_chart(alt_split, use_container_width=True)
   st.success('Please proceed to "Set Parameters" tab')
