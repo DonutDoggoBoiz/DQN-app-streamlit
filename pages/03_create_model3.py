@@ -37,14 +37,14 @@ with train_tab:
     with col2:
         st.write('  ')
         st.write('  ')
-        train_button = st.button("Start Training 🏃")
-        if train_button:
-          train_model()
+        train_button = st.checkbox("Start Training 🏃")
+    if train_button:
+      train_model()
         
 
 with test_tab:
     st.header("Test your model on test set 🧪")
-    test_button = st.button("Start Testing 🏹")
+    test_button = st.checkbox("Start Testing 🏹")
     if test_button:
         st.write("Test Result")
         test_model()
@@ -58,7 +58,6 @@ with save_tab:
     if save_button:
         save_model()
         st.success("Your model is saved successfully")
-        st.write(model_df)
         
         
 with pending_tab:
