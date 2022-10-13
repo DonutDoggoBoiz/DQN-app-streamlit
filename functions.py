@@ -7,6 +7,7 @@ import streamlit as st
 import altair as alt
 import datetime
 # ---------------------------- #
+username = 'admin99'
 
 ### ------------ MODEL DATABASE ------------ ###
 model_list = []
