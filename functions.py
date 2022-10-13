@@ -89,9 +89,9 @@ def split_dataset2():
                       color = 'split' ,
                       tooltip=['Date','Close','split'] ).interactive()
   st.write("Splited dataset")
-  # st.line_chart(df_price_train)
   st.altair_chart(alt_split, use_container_width=True)
-  #st.write("Spliting......... DONE!")
+  st.success('Please proceed to "Set Parameters" tab')
+  
   
 ### ------ MACHINE LEARNING MODULE ------ ###
 ## --- parameters setting --- ##
