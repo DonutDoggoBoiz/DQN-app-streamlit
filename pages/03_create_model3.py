@@ -55,7 +55,7 @@ with tab5:
     save_button = st.button("Save 💾")
     if save_button:
         #save_model()
-        new_model = {'username':username, 'model_name':'ptt_99', 'stock_quote':'ptt'.upper()}
+        new_model = {'username':username, 'model_name':agent_name, 'stock_quote':'ptt'.upper()}
         model_df.append(new_model)
         st.success("Your model is saved successfully")
         st.write(model_df)
