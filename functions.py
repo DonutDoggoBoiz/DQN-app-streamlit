@@ -131,6 +131,10 @@ def set_parameters():
           st.write("Commission fee:               {}%".format(commission_fee_pct) )
 
 ### ------ TRAINING MODULE ------ ###
+def set_train_episodes():
+    global train_episodes
+    train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
+    
 def train_model():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
