@@ -91,7 +91,7 @@ def split_dataset2():
   st.write("Splited dataset")
   # st.line_chart(df_price_train)
   st.altair_chart(alt_split, use_container_width=True)
-  st.write("Spliting......... DONE!")
+  #st.write("Spliting......... DONE!")
   
 ### ------ MACHINE LEARNING MODULE ------ ###
 ## --- parameters setting --- ##
