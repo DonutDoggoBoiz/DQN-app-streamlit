@@ -40,6 +40,8 @@ with tab3:
     with col1:
         train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
     with col2:
+        st.write('  ')
+        st.write('  ')
         train_button = st.button("Start Training 🏃")
         if train_button:
           train_model()
