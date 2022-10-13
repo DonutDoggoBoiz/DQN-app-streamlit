@@ -7,6 +7,7 @@ import streamlit as st
 import altair as alt
 import datetime
 # ---------------------------- #
+# DEMO username
 username = 'admin99'
 
 ### ------------ MODEL DATABASE ------------ ###
@@ -46,7 +47,7 @@ def observe_price():
           .mark_line()
           .encode(x = alt.X('Date') ,
                   y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                  tooltip=['Date','Close']
+                  tooltip=[{'DDD':'Date'},{'PPP':'Close'}]
                  )
           .interactive()
       )
@@ -58,7 +59,7 @@ def observe_price():
   split_point = st.slider('Select the split point between Train set and Test set:', 0, int(df_length), int(df_length/2))
   train_size_pct = (split_point/df_length)*100
   test_size_pct = 100-train_size_pct
-  st.write('Dataset will be split into {} records of train set and {} records of test set'.format(split_point, df_length-split_point) )
+  st.write('Dataset will be split into {} records of training set and {} records of test set'.format(split_point, df_length-split_point) )
   #st.write('train set will be considered as {:.2f}% of dataset while the other {:.2f}% is test set'.format(train_size_pct,test_size_pct) )
   st.write('the training set is {:.2f}% of the dataset while the test set is {:.2f}%'.format(train_size_pct,test_size_pct) )
   #return split_point
