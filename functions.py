@@ -135,7 +135,7 @@ def train_model():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
-  n_episodes = 2      # 10ep use around 6 mins
+  n_episodes = train_episodes      # 10ep use around 6 mins
 
   ### --- trading parameters
   #initial_balance = 1000000
