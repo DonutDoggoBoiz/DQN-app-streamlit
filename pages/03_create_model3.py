@@ -22,7 +22,7 @@ model_df = pd.DataFrame(model_list)
 tab_list = ["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"]
 select_data_tab, set_para_tab, train_tab, test_tab, save_tab, pending_tab = st.tabs(tab_list)
 
-with tab1:
+with select_tab:
     st.header("Select stock and price range 📈")
     fetch_price_data()
     observe_button = st.checkbox('View Dataset 🔍')
@@ -33,14 +33,14 @@ with tab1:
         #st.write("Spliting.........")
         split_dataset2()
 
-with tab2:
+with set_para_tab:
     st.header("Set parameters for your trading model 💡")
     #set_param_button = st.checkbox("Set Parameters")
     #if set_param_button:
       #set_parameters()
     set_parameters()
 
-with tab3:
+with train_tab:
     st.header("Train your model with train set 🚀")
     col1 , col2 = st.columns(2)
     with col1:
@@ -53,14 +53,14 @@ with tab3:
           train_model()
         
 
-with tab4:
+with test_tab:
     st.header("Test your model on test set 🧪")
     test_button = st.button("Start Testing 🏹")
     if test_button:
         st.write("Test Result")
         test_model()
     
-with tab5:
+with save_tab:
     st.header("Save your model")
     show_model_list_checkbox = st.checkbox('Show model list')
     if show_model_list_checkbox:
@@ -74,7 +74,7 @@ with tab5:
         st.write(model_df)
         
         
-with tab6:
+with pending_tab:
     st.header("PENDING adjustment...")
     st.success("select data = DONE")
     st.warning("parameter -- adjust interface and input choice")
