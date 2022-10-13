@@ -49,7 +49,6 @@ def observe_price():
                   y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) , 
                   tooltip=[{'field':'Date','title':'DDD'}]
                  )
-          .tooltip
           .interactive()
       )
   st.altair_chart(c, use_container_width=True)
