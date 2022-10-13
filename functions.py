@@ -47,7 +47,10 @@ def observe_price():
           .mark_line()
           .encode(x = alt.X('Date') ,
                   y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) , 
-                  tooltip=['Date', 'Close']
+                  #tooltip=['Date', 'Close']
+                  tooltip=[alt.Tooltip('Date', title='DDD'), 
+                           alt.Tooltip('Close', title='PPP')
+                          ]
                  )
           .interactive()
       )
