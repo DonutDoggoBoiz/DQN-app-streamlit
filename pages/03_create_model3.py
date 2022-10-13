@@ -5,7 +5,7 @@ from functions import fetch_price_data, observe_price, split_dataset2, set_param
 
 
 ### ------------ session state ------------ ###
-username = 'admin99'
+# username = 'admin99'
 
 ### ------------ INTERFACE ------------ ###
 tab_list = ["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"]
