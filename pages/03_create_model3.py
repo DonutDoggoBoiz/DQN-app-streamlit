@@ -1,22 +1,11 @@
 import streamlit as st
 import pandas as pd
 import datetime
-from functions import fetch_price_data, observe_price, split_dataset, set_parameters, train_model, split_dataset2, test_model, save_model
-
-def set_train_episodes():
-    global train_episodes
-    train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
+from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, test_model, save_model
 
 
 ### ------------ session state ------------ ###
 username = 'admin99'
-### ------------ MODEL DATABASE ------------ ###
-model_list = []
-model1 = {'username':'admin', 'model_name':'bbl_01', 'stock_quote':'bbl'.upper()}
-model2 = {'username':'admin', 'model_name':'ptt_04', 'stock_quote':'ptt'.upper()}
-model_list.append(model1)
-model_list.append(model2)
-model_df = pd.DataFrame(model_list)
 
 ### ------------ INTERFACE ------------ ###
 tab_list = ["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"]
@@ -67,9 +56,7 @@ with save_tab:
       st.write(model_df)
     save_button = st.button("Save 💾")
     if save_button:
-        #save_model()
-        new_model = {'username':username, 'model_name':agent_name, 'stock_quote':'ptt'.upper()}
-        model_df.append(new_model)
+        save_model()
         st.success("Your model is saved successfully")
         st.write(model_df)
         
