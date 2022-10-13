@@ -36,7 +36,6 @@ def fetch_price_data():
                         end=end_date,
                         progress=True)
   df_price.drop(columns=['Adj Close','Volume'] , inplace=True)
-  df_price['Price'] = df_price['Close']
   df_length = df_price['Close'].count()
   #return df_price, df_length
   
@@ -46,10 +45,9 @@ def observe_price():
                 )
           .mark_line()
           .encode(x = alt.X('Date') ,
-                  y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) , 
-                  #tooltip=['Date', 'Close']
-                  tooltip=[alt.Tooltip('Date', title='DDD'), 
-                           alt.Tooltip('Close', title='PPP')
+                  y = alt.Y('Close', title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
+                  tooltip=[alt.Tooltip('Date', title='Date'), 
+                           alt.Tooltip('Close', title='Price')
                           ]
                  )
           .interactive()
@@ -79,7 +77,11 @@ def split_dataset2():
   alt_split = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
                       y = alt.Y('Close',title='Price', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       color = 'split' ,
-                      tooltip=['Date','Close','split'] ).interactive()
+                      tooltip=[alt.Tooltip('Date', title='Date'), 
+                            alt.Tooltip('Close', title='Price'),
+                            alt.Tooltip('split', title='Dataset')
+                          ] 
+                        ).interactive()
   st.write("Splited dataset")
   st.altair_chart(alt_split, use_container_width=True)
   st.success('Please proceed to "Set Parameters" tab')
