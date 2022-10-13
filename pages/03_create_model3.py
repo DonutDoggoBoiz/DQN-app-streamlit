@@ -24,7 +24,7 @@ with tab1:
       observe_price()
       split_button = st.checkbox("Split dataset ✂️")
       if split_button:
-        st.write("Spliting.........")
+        #st.write("Spliting.........")
         split_dataset2()
 
 with tab2:
