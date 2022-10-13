@@ -36,9 +36,14 @@ with tab2:
 
 with tab3:
     st.header("Train your model with train set 🚀")
-    train_button = st.button("Start Training 🏃")
-    if train_button:
-      train_model()
+    col1 , col2 = st.columns(2)
+    with col1:
+        train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
+    with col2:
+        train_button = st.button("Start Training 🏃")
+        if train_button:
+          train_model()
+        
 
 with tab4:
     st.header("Test your model on test set 🧪")
