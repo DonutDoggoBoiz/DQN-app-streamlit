@@ -4,4 +4,4 @@ tensorflow
 yfinance
 altair
 matplotlib
-streamlit_authenticator
+deta
