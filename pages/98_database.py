@@ -56,5 +56,5 @@ if st.button('add model to database2'):
             'trading_size_pct':trading_size_pct ,
             'commission_fee_pct':commission_fee_pct ,
             'episode_trained': n_episodes})
-    db2_frame = pd.DataFrame(db2.fetch().items)
-    st.write(ab2_frame)
+  db2_frame = pd.DataFrame(db2.fetch().items)
+  st.write(ab2_frame)
