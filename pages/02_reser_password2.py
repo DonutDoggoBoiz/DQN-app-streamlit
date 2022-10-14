@@ -35,3 +35,4 @@ if reset_password_form.form_submit_button('Reset Password'):
     else:
       user_key = user_frame.loc[user_frame['username'] == username, 'key'].to_string(index=False)
       user_db.update({'password':new_password}, user_key)
+      st.success("Your password is successfully reset!")
