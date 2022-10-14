@@ -25,7 +25,7 @@ if st.button('show user database'):
   st.write(type(aaa))
   st.write(aaa)
   daframe = pd.DataFrame(aaa)
-  st.write(daframe)
+  st.write(daframe['username'])
   #st.dataframe(db.fetch().items)
 
 ### --- MODEL DATABASE DEMO --- ###
