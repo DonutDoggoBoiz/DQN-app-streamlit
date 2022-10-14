@@ -27,3 +27,6 @@ if login_form.form_submit_button('Login'):
     else: 
       if user_frame.loc[user_frame['username'] == username,'password'].values != password:
         st.error("Password incorrect. Please try again")
+      else:
+        st.success("Login Successful!")
+        st.write('Welcome, {}'.format(username))
