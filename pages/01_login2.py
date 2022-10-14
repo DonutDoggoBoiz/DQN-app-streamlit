@@ -25,9 +25,5 @@ if login_form.form_submit_button('Login'):
     if username not in user_list:
       st.warning('User not found. Please check your username')
     else: 
-      if user_frame.loc[user_frame['username'] == username].password != password:
+      if user_frame.loc[user_frame['username'] == username,'password'].values != password:
         st.error("Password incorrect. Please try again")
-        
-
-        
-        #password_list[user_list.index(username)] != password
