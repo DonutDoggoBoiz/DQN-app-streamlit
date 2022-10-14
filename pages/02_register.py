@@ -1,18 +1,26 @@
+### --- IMPORT LIBRARY --- ###
 import streamlit as st
+import pandas as pd
+from deta import Deta
 
-st.markdown("## Register Page 📝")
-st.sidebar.markdown("## Register 📝")
+### --- DATABASE CONNECTION --- ###
+deta = Deta(st.secrets["deta_key"])
+user_db = deta.Base("user_db")
 
-register_user_form = st.form('Register user')
-register_user_form.subheader('Registration Form')
-new_username = register_user_form.text_input('Username').lower()
-new_password = register_user_form.text_input('Password', type='password')
-# new_password_repeat = register_user_form.text_input('Repeat password', type='password')
+user_frame = user_db.fetch().items
 
-if register_user_form.form_submit_button('Register'):
+register_form = st.form('Register')
+register_form.subheader('Registration Form 📝')
+new_username = register_form.text_input('Username', placeholder='your username')
+new_password = register_form.text_input('Password', type='password', placeholder='your password')
+
+if register_form.form_submit_button('Register'):
   if len(new_username) <= 0:
     st.warning("Please enter a username")
   elif len(new_password) <= 0:
     st.warning("Please enter your password")
   elif len(new_username) > 0 and len(new_password) > 0:
-    st.success("Register Successful!")
+    if new_username not in user_frame['username']:
+      user_db.put({'username':new_username, 'password':new_password})
+      st.success("Register Successful!")
+    else: st.warning("Username already exists. Please enter a new username")
