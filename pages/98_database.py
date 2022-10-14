@@ -22,6 +22,7 @@ if st.button('show user database'):
   st.write('Here is the latest user database')
   aaa = db.fetch().items
   st.write(type(aaa))
+  st.write(aaa)
   #st.dataframe(db.fetch().items)
 
 db2 = deta.Base("model_db")
