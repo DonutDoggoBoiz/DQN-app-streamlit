@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from deta import Deta
 
 deta = Deta(st.secrets["deta_key"])
@@ -23,6 +24,8 @@ if st.button('show user database'):
   aaa = db.fetch().items
   st.write(type(aaa))
   st.write(aaa)
+  daframe = pd.DataFrame(aaa)
+  st.write(daframe)
   #st.dataframe(db.fetch().items)
 
 db2 = deta.Base("model_db")
