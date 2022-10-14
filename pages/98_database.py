@@ -45,7 +45,8 @@ commission_fee_pct = 0.157
 
 db2 = deta.Base("model_db")
 if st.button('add model to database2'):
-  db2.put({'model_name':agent_name, 
+  db2.put({'username':'admin99',
+           'model_name':agent_name, 
             'gamma':agent_gamma,
             'start_epsilon':agent_epsilon ,
             'epsilon_decline':agent_epsilon_dec ,
@@ -55,3 +56,5 @@ if st.button('add model to database2'):
             'trading_size_pct':trading_size_pct ,
             'commission_fee_pct':commission_fee_pct ,
             'episode_trained': n_episodes})
+    db2_frame = pd.DataFrame(db2.fetch().items)
+    st.write(ab2_frame)
