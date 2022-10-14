@@ -10,13 +10,13 @@ user_db = deta.Base("user_db")
 user_frame = pd.DataFrame(user_db.fetch().items)
 user_list = user_frame['username'].values.tolist()
 
-reset_password_form = st.form('Register')
-reset_password_form.subheader('Registration Form 📝')
+reset_password_form = st.form('Reset Password')
+reset_password_form.subheader('Reset Password Form 📝')
 username = reset_password_form.text_input('Username', placeholder='your username')
 password = reset_password_form.text_input('Password', type='password', placeholder='your password')
 new_password = reset_password_form.text_input('Password', type='password', placeholder='your new password')
 
-if reset_password_form.form_submit_button('Register'):
+if reset_password_form.form_submit_button('Reset Password'):
   # if fields are empty
   if len(username) <= 0:
     st.warning("Please enter a username")
