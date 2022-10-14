@@ -20,4 +20,4 @@ if register_form.form_submit_button('Register'):
 
 if st.button('show user database'):
   st.write('Here is the latest user database')
-  st.write(db.fetch().items)
+  st.write(db.fetch())
