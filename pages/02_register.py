@@ -7,7 +7,7 @@ from deta import Deta
 deta = Deta(st.secrets["deta_key"])
 user_db = deta.Base("user_db")
 
-user_frame = user_db.fetch().items
+user_frame = pd.DataFrame(user_db.fetch().items)
 user_list = user_frame['username'].values.tolist()
 
 register_form = st.form('Register')
