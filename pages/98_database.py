@@ -20,6 +20,8 @@ if register_form.form_submit_button('Register'):
 
 if st.button('show user database'):
   st.write('Here is the latest user database')
-  aaa = db.fetch({'username':'admin'}).items
-  st.write(aaa)
+  aaa = db.fetch().items
+  st.write(type(aaa))
   #st.dataframe(db.fetch().items)
+
+db2 = deta.Base("model_db")
