@@ -8,6 +8,7 @@ deta = Deta(st.secrets["deta_key"])
 user_db = deta.Base("user_db")
 
 user_frame = user_db.fetch().items
+user_list = user_frame['username'].values.tolist()
 
 register_form = st.form('Register')
 register_form.subheader('Registration Form 📝')
@@ -20,7 +21,7 @@ if register_form.form_submit_button('Register'):
   elif len(new_password) <= 0:
     st.warning("Please enter your password")
   elif len(new_username) > 0 and len(new_password) > 0:
-    if new_username not in user_frame['username']:
+    if new_username not in user_list:
       user_db.put({'username':new_username, 'password':new_password})
       st.success("Register Successful!")
     else: st.warning("Username already exists. Please enter a new username")
