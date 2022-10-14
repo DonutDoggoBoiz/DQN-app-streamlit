@@ -28,4 +28,30 @@ if st.button('show user database'):
   st.write(daframe)
   #st.dataframe(db.fetch().items)
 
+### --- MODEL DATABASE DEMO --- ###
+n_episodes = 22
+# agent parameters
+agent_name = 'model_22'
+agent_gamma = 0.99
+agent_epsilon = 1.0
+agent_epsilon_dec = 0
+agent_epsilon_end = 0.01
+agent_lr = 0.001
+# trading parameters
+initial_balance = 1000000
+trading_size_pct = 10
+commission_fee_pct = 0.157
+
+
 db2 = deta.Base("model_db")
+if st.button('add model to database2'):
+  db.put({'model_name':agent_name, 
+          'gamma':agent_gamma,
+          'start_epsilon':agent_epsilon ,
+          'epsilon_decline':agent_epsilon_dec ,
+          'epislon_min':agent_epsilon_end ,
+          'learning_rate':agent_lr ,
+          'initial_balance':initial_balance ,
+          'trading_size_pct':trading_size_pct ,
+          'commission_fee_pct':commission_fee_pct ,
+          'episode_trained': n_episodes})
