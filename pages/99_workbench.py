@@ -62,6 +62,6 @@ if st.button('show form') or st.session_state['show_form_state']:
           st.success("Login Successful!")
           st.write('Welcome, {}'.format(username))
 
-if st.button('show form 2'): #or st.session_state['show_form_state']:
-  #st.session_state['show_form_state'] = True
+if st.button('show form 2') or st.session_state['show_form_state']:
+  st.session_state['show_form_state'] = True
   login_form_gen()
