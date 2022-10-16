@@ -12,9 +12,14 @@ user_frame = pd.DataFrame(user_db.fetch().items)
 user_list = user_frame['username'].values.tolist()
 password_list = user_frame['password'].values.tolist()
 
+### --- SESSION STATE --- ###
+if 'show_form_state' not in st.session_state:
+  st.session_state['show_form_state'] = False
+
 ### --- INTERFACE --- ###
 st.write('### Test def button')
-if st.button('show form'):
+if st.button('show form') or st.session_state['show_form_state']:
+  st.session_state['show_form_state'] = True
   login_form = st.form('Login')
   login_form.subheader('Login Form 📝')
   username = login_form.text_input('Username', placeholder='your username')
