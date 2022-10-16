@@ -30,3 +30,4 @@ if login_form.form_submit_button('Login'):
       else:
         st.success("Login Successful!")
         st.write('Welcome, {}'.format(username))
+        st.sidebar.button('Logout')
