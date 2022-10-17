@@ -269,12 +269,15 @@ def train_result():
   st.line_chart(np_acc_reward_history) #[-1])
   train_date_col = df_price_train.reset_index()[window_size:len(df_price_train)-1]['Date']
   reward_history_df = pd.DataFrame(np_acc_reward_history, index=train_date_col)
-  alt_reward_history = alt.Chart(reward_history_df).mark_line()
+  st.write('acc reward shape: {}'.format(np_acc_reward_history.shape) )
+  st.write('train date col len: {}'.format(len(train_date_col)
+  st.dataframe(reward_history_df)
+  #alt_reward_history = alt.Chart(reward_history_df).mark_line()
                       #.encode(x = alt.X('Date'), 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
                       #tooltip=['Date','Close','split'] ).interactive()
-  st.altair_chart(alt_reward_history, use_container_width=True)
+  #st.altair_chart(alt_reward_history, use_container_width=True)
   st.write('Account Balance History of last episode')
   st.line_chart(np.transpose(np_account_balance_history)) #[-1])
 
