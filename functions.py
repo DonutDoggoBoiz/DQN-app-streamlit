@@ -13,8 +13,8 @@ deta = Deta(st.secrets["deta_key"])
 stock_db = deta.Base("stock_db")
 
 stock_df = pd.DataFrame(stock_db.fetch().items)
-stock_list = stock_df['symbol'].values.tolist()
-stock_list_sorted = stock_list.sort()
+stock_list = stock_df['symbol'].values.to_list().sort()
+#stock_list_sorted = stock_list.sort()
 
 # ---------------------------- #
 # DEMO username
@@ -32,7 +32,7 @@ model_df = pd.DataFrame(model_list)
 def fetch_price_data():
   global stock_name, df_price, df_length
   #stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
-  stock_name = st.selectbox('Select your Stock', options=stock_list_sorted)
+  stock_name = st.selectbox('Select your Stock', options=stock_list)
   int_year = int(datetime.date.today().year)
   int_last_year = int(datetime.date.today().year) - 1
   int_month = int(datetime.date.today().month)
