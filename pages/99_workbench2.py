@@ -23,6 +23,7 @@ def login_func():
 
 def logout_func():
   st.session_state['login_status'] = False
+  st.session_state['username'] = None
   
 ### --- INTERFACE --- ###
 placeholder = st.empty()
