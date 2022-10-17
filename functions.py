@@ -260,12 +260,13 @@ def train_model():
           eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
+def train_result()
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   st.write('Reward History of last episode')
   st.line_chart(np.transpose(np_acc_reward_history)) #[-1])
-  #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
+  #alt_reward_history = alt.Chart(np.transpose(np_acc_reward_history)).mark_line().encode(x = alt.X('Date'), 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
                       #tooltip=['Date','Close','split'] ).interactive()
