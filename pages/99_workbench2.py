@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 from deta import Deta
+import time
 
 ### --- DATABASE CONNECTION --- ###
 deta = Deta(st.secrets["deta_key"])
@@ -47,8 +48,10 @@ if st.session_state['login_status'] == False:
                   st.success("Login Successful!")
                   st.session_state['login_status'] = True
                   login_func()
-                  st.write('Welcome na krub, {}'.format(username))
-                  st.write('Welcome na sess, {}'.format(st.session_state['username']))
+                  time.sleep(2)
+                  with placeholder.container()
+                    st.write('Welcome na krub, {}'.format(username))
+                    st.write('Welcome na sess, {}'.format(st.session_state['username']))
                   ### --- SIDEBAR --- ###
                   st.sidebar.write('Welcome, {}'.format(st.session_state['username']))
                   st.sidebar.button('Logout', on_click=logout_func)
@@ -57,6 +60,7 @@ else:
     st.sidebar.write('Welcome, {}'.format(st.session_state['username']))
     logout_button_side = st.sidebar.button('Logout', on_click=logout_func)
     reset_pass_button_side = st.sidebar.button('Reset Password')
-    placeholder.st.write('Welcome na sess, {}'.format(st.session_state['username']))
+    with placeholder.container():
+      st.write('Welcome na sess, {}'.format(st.session_state['username']))
     
 
