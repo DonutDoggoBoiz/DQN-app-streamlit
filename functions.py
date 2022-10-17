@@ -33,9 +33,9 @@ def fetch_price_data():
   global stock_name, df_price, df_length
   #stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
   stock_name = st.selectbox('Select your Stock', options=stock_list, index=86)
-  company_name = stock_df['symbol'==stock_name]['company_name']
-  industry_name = stock_df['symbol'==stock_name]['industry']
-  sector_name = stock_df['symbol'==stock_name]['sector']
+  company_name = stock_df[stock_df['symbol']==stock_name]['company_name']
+  industry_name = stock_df[stock_df['symbol']==stock_name]['industry']
+  sector_name = stock_df[stock_df['symbol']==stock_name]['sector']
   st.write('{} --- {} , {}'.format(company_name, industry_name, sector_name) )
   int_year = int(datetime.date.today().year)
   int_last_year = int(datetime.date.today().year) - 1
