@@ -49,7 +49,7 @@ if st.session_state['login_status'] == False:
                   st.session_state['login_status'] = True
                   login_func()
                   time.sleep(2)
-                  with placeholder.container()
+                  with placeholder.container():
                     st.write('Welcome na krub, {}'.format(username))
                     st.write('Welcome na sess, {}'.format(st.session_state['username']))
                   ### --- SIDEBAR --- ###
