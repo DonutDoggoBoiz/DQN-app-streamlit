@@ -12,10 +12,10 @@ if st.button('test st.empty()'):
 
 ### --- TEST placeholder = st.empty --- ###
 # BUTTONS
-test_b =st.button('text'):
-line_chart_b = st.button('line chart'):
-container_b = st.button('container'):       
-clear_b = st.button('clear'):
+test_b =st.button('text')
+line_chart_b = st.button('line chart')
+container_b = st.button('container')   
+clear_b = st.button('clear')
 
 # SINGLE ELEMENT CONTAINER
 placeholder = st.empty()
