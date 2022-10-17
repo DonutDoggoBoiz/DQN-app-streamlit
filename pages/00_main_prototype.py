@@ -42,7 +42,7 @@ if st.session_state['login_status'] == False:
           st.error("Password incorrect. Please try again")
         else:
           st.success("Login Successful!")
-          st.session_state['login_status'] = True
+          st.session_state['username'] = username
           login_func()
           st.write('Welcome na krub, {}'.format(username))
           st.write('Welcome na sess, {}'.format(st.session_state['username']))
