@@ -28,6 +28,8 @@ if 'split_button_status' not in st.session_state:
   st.session_state['split_button_status'] = False
 if 'train_button_status' not in st.session_state:
   st.session_state['train_button_status'] = False
+if 'test_button_status' not in st.session_state:
+  st.session_state['test_button_status'] = False
 
   
 def login_func():
@@ -134,15 +136,21 @@ else:
                 #train_button = st.checkbox("Start Training 🏃")
                 train_button = st.button("Start Training 🏃")
             if train_button: #or st.session_state['train_button_status']:
-              #st.session_state['train_button_status'] = True
+              st.session_state['train_button_status'] = True
               train_model()
+              if st.session_state['train_button_status']:
+                train_result()
 
         with test_tab:
             st.header("Test your model on test set 🧪")
-            test_button = st.checkbox("Start Testing 🏹")
+            #test_button = st.checkbox("Start Testing 🏹")
+            test_button = st.button("Start Testing 🏹")
             if test_button:
+                st.session_state['test_button_status'] = True
                 st.write("Test Result")
                 test_model()
+                if st.session_state['test_button_status']:
+                  test_result()
 
         with save_tab:
             st.header("Save your model")
