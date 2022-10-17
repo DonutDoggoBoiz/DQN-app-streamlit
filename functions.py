@@ -260,7 +260,7 @@ def train_model():
           eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
-def train_result()
+def train_result():
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
@@ -394,6 +394,7 @@ def test_model():
           eval_eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
+def test_result():
   record_num = np.array(eval_action_history).shape[0]
   np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
   np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
