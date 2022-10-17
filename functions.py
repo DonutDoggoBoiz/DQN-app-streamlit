@@ -270,7 +270,7 @@ def train_result():
   train_date_col = df_price_train.reset_index()[window_size:len(df_price_train)-1]['Date']
   reward_history_df = pd.DataFrame(np_acc_reward_history, index=train_date_col)
   st.write('acc reward shape: {}'.format(np_acc_reward_history.shape) )
-  st.write('train date col len: {}'.format(len(train_date_col) )
+  st.write('train date col len: {}'.format(len(train_date_col)) )
   st.dataframe(reward_history_df)
   #alt_reward_history = alt.Chart(reward_history_df).mark_line()
                       #.encode(x = alt.X('Date'), 
