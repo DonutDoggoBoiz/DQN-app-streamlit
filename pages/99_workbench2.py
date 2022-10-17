@@ -4,7 +4,7 @@ import pandas as pd
 from deta import Deta
 import time
 
-from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, test_model, save_model
+from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, train_result, test_model, test_result, save_model
 
 ### --- DATABASE CONNECTION --- ###
 deta = Deta(st.secrets["deta_key"])
@@ -19,8 +19,16 @@ if 'login_status' not in st.session_state:
   st.session_state['login_status'] = False
 if 'username' not in st.session_state:
   st.session_state['username'] = None
+  ### --- COL 3 --- ###
 if 'col3_b_status' not in st.session_state:
   st.session_state['col3_b_status'] = False
+if 'observe_button_status' not in st.session_state:
+  st.session_state['observe_button_status'] = False
+if 'split_button_status' not in st.session_state:
+  st.session_state['split_button_status'] = False
+if 'train_button_status' not in st.session_state:
+  st.session_state['train_button_status'] = False
+
   
 def login_func():
   st.session_state['login_status'] = True
@@ -97,11 +105,15 @@ else:
         with select_data_tab:
             st.header("Select stock and price range 📈")
             fetch_price_data()
-            observe_button = st.checkbox('View Dataset 🔍')
-            if observe_button:
+            #observe_button = st.checkbox('View Dataset 🔍')
+            observe_button = st.button('View Dataset 🔍')
+            if observe_button or st.session_state['observe_button_status']:
+              st.session_state['observe_button_status'] = True
               observe_price()
-              split_button = st.checkbox("Split dataset ✂️")
-              if split_button:
+              #split_button = st.checkbox("Split dataset ✂️")
+              split_button = st.button("Split dataset ✂️")
+              if split_button or st.session_state['split_button_status']:
+                st.session_state['split_button_status'] = True
                 split_dataset2()
 
         with set_para_tab:
@@ -119,10 +131,11 @@ else:
             with col2:
                 st.write('  ')
                 st.write('  ')
-                train_button = st.checkbox("Start Training 🏃")
-            if train_button:
+                #train_button = st.checkbox("Start Training 🏃")
+                train_button = st.button("Start Training 🏃")
+            if train_button: #or st.session_state['train_button_status']:
+              #st.session_state['train_button_status'] = True
               train_model()
-
 
         with test_tab:
             st.header("Test your model on test set 🧪")
