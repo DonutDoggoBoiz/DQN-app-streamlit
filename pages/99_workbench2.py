@@ -46,7 +46,7 @@ if st.session_state['login_status'] == False:
                   st.error("Password incorrect. Please try again")
                 else:
                   st.success("Login Successful!")
-                  st.session_state['login_status'] = True
+                  st.session_state['username'] = username
                   login_func()
                   time.sleep(2)
                   with placeholder.container():
