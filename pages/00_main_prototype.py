@@ -16,6 +16,12 @@ if 'login_status' not in st.session_state:
   st.session_state['login_status'] = False
 if 'username' not in st.session_state:
   st.session_state['username'] = None
+
+def login_func():
+  st.session_state['login_status'] = True
+
+def logout_func():
+  st.session_state['login_status'] = False
   
 ### --- INTERFACE --- ###
 dummy_button = st.button('dummy button')
@@ -42,10 +48,12 @@ if st.session_state['login_status'] == False:
           st.session_state['username'] = username
           #st.write('Welcome na krub, {}'.format(username))
           st.write('Welcome na sess, {}'.format(st.session_state['username']))
-          #st.sidebar.write('Welcome, {}'.format(username))
-          st.sidebar.button('Logout')
+          st.sidebar.write('Welcome, {}'.format(st.session_state['username']))
+          st.sidebar.button('Logout', on_click=logout_func)
           st.sidebar.button('Reset Password')
 else:
   st.sidebar.write('Welcome, {}'.format(st.session_state['username']))
-  st.sidebar.button('Logout')
-  st.sidebar.button('Reset Password')
+  logout_button_side = st.sidebar.button('Logout', on_click=logout_func)
+  reset_pass_button_side = st.sidebar.button('Reset Password')
+  
+  
