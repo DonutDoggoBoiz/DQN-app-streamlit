@@ -24,8 +24,6 @@ def logout_func():
   st.session_state['login_status'] = False
   
 ### --- INTERFACE --- ###
-dummy_button = st.button('dummy button')
-
 if st.session_state['login_status'] == False:
   login_form = st.form('Login')
   login_form.subheader('Login 📝')
