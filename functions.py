@@ -150,6 +150,7 @@ def set_train_episodes():
     train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
     
 def train_model():
+  global action_history, acc_reward_history, account_balance_history, n_episodes
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
@@ -264,12 +265,15 @@ def train_result():
   record_num = np.array(action_history).shape[0]
   np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
   np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  acc_reward_hist_array = np.transpose(np_acc_reward_history)
   st.write('Reward History of last episode')
-  st.line_chart(np.transpose(np_acc_reward_history)) #[-1])
-  #alt_reward_history = alt.Chart(np.transpose(np_acc_reward_history)).mark_line().encode(x = alt.X('Date'), 
+  st.line_chart(acc_reward_hist_array) #[-1])
+  alt_reward_history = alt.Chart(acc_reward_hist_array).mark_line()
+                      #.encode(x = alt.X('Date'), 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
                       #tooltip=['Date','Close','split'] ).interactive()
+  st.altair_chart(alt_reward_history, use_container_width=True)
   st.write('Account Balance History of last episode')
   st.line_chart(np.transpose(np_account_balance_history)) #[-1])
 
