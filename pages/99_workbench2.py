@@ -11,7 +11,7 @@ if st.button('test st.empty()'):
 
 
 ### --- TEST placeholder = st.empty --- ###
-placeholder = st.empty()
+#placeholder = st.empty()
 
 # Replace the placeholder with some text:
 if st.button('text'):
@@ -30,3 +30,5 @@ if st.button('container'):
 if st.button('clear'):
     # Clear all those elements:
     placeholder.empty()
+    
+placeholder = st.empty()
