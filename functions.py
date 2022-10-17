@@ -316,7 +316,7 @@ def test_model():
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
-  x_episodes = 2      # 10ep use around 6 mins
+  x_episodes = 1      # 10ep use around 6 mins
 
   ### --- trading parameters
   #initial_balance = 1000000
@@ -415,16 +415,16 @@ def test_model():
   ### --- end of all episodes --- ###
 def test_result():
   record_num = np.array(eval_action_history).shape[0]
-  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
-  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(x_episodes) , int(record_num/x_episodes) ) )
+  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(record_num/x_episodes) , int(x_episodes) ) )
+  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(record_num/x_episodes) , int(x_episodes) ) )
   st.write('Reward History of testing episode')
-  st.line_chart(np.transpose(np_eval_acc_reward_history)) #[-1])
+  st.line_chart(np_eval_acc_reward_history) #[-1])
   #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
                       #tooltip=['Date','Close','split'] ).interactive()
   st.write('Account Balance History of testing episode')
-  st.line_chart(np.transpose(np_eval_account_balance_history)) #[-1])
+  st.line_chart(np_eval_account_balance_history) #[-1])
 
 def save_model():
   #save_path = "models/" + str(agent.model_file)
