@@ -8,4 +8,4 @@ from functions import login_form
 login_form()
 
 if st.sidebar.button('check sess'):
-  st.write('Welcome na sess, {}'.format(st.session_state['username']))
+  st.write('check session state, {}'.format(st.session_state['username']))
