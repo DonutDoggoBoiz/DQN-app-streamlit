@@ -28,7 +28,7 @@ if st.button('Add to Deta'):
             'market':market_list,
             'industry':industry_list,
             'sector':sector_list}
-  for i in range(10):
+  for i in range(len(df)):
     stock_db.put({'symbol':df['Symbol'][i],
             'company_name':df['Company'][i],
             'market':df['Market'][i],
