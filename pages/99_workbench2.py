@@ -24,7 +24,7 @@ def logout_func():
   st.session_state['login_status'] = False
   
 ### --- INTERFACE --- ###
-placeholder = st.empty
+placeholder = st.empty()
 
 if st.session_state['login_status'] == False:
     with placeholder.container():
