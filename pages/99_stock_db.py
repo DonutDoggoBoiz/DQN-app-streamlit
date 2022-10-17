@@ -18,5 +18,14 @@ if st.button('Show Dataframe'):
 
 if st.button('Add to Deta'):
   df = pd.read_csv(uploaded_file)
-  df_dict = df.to_dict()
-  stock_db.put(df_dict)
+  symbol_list = df['Symbol'].to_list()
+  company_list = df['Company'].to_list()
+  market_list = df['Market'].to_list()
+  industry_list = df['Industry'].to_list()
+  sector_list = df['Sector'].to_list()
+  stock_full_dict = {'symbol':symbol_list,
+            'company_name':company_list,
+            'market':market_list,
+            'industry':industry_list,
+            'sector':sector_list}
+  stock_db.put(stock_full_dict)
