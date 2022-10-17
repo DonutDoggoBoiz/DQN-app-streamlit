@@ -6,6 +6,15 @@ from dqn_object import Agent
 import streamlit as st
 import altair as alt
 import datetime
+from deta import Deta
+
+### --- DATABASE CONNECTION --- ###
+deta = Deta(st.secrets["deta_key"])
+stock_db = deta.Base("stock_db")
+
+stock_df = pd.DataFrame(stock_db.fetch().items)
+stock_list = stock_df['symbol'].values.tolist()
+
 # ---------------------------- #
 # DEMO username
 username = 'admin99'
@@ -21,7 +30,8 @@ model_df = pd.DataFrame(model_list)
 #### ------ PRICE FETCHING MODULE ------ ###
 def fetch_price_data():
   global stock_name, df_price, df_length
-  stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
+  #stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK') )
+  stock_name = st.selectbox('Select your Stock', options=stock_list)
   int_year = int(datetime.date.today().year)
   int_last_year = int(datetime.date.today().year) - 1
   int_month = int(datetime.date.today().month)
