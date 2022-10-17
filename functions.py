@@ -13,7 +13,7 @@ deta = Deta(st.secrets["deta_key"])
 stock_db = deta.Base("stock_db")
 
 stock_df = pd.DataFrame(stock_db.fetch().items)
-stock_list = stock_df['symbol'].values.tolist()
+stock_list = stock_df['symbol'].values.tolist().sort()
 
 # ---------------------------- #
 # DEMO username
