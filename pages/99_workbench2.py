@@ -19,7 +19,7 @@ if 'login_status' not in st.session_state:
   st.session_state['login_status'] = False
 if 'username' not in st.session_state:
   st.session_state['username'] = None
-if 'col3_b_status' not is st.session_state:
+if 'col3_b_status' not in st.session_state:
   st.session_state['col3_b_status'] = False
   
 def login_func():
