@@ -14,8 +14,8 @@ password_list = user_frame['password'].values.tolist()
 ### --- SESSION STATE --- ###
 if 'login_status' not in st.session_state:
   st.session_state['login_status'] = False
-if 'username' not in st.session_state:
-  st.session_state['username'] = None
+#if 'username' not in st.session_state:
+  #st.session_state['username'] = None
 
 def login_func():
   st.session_state['login_status'] = True
@@ -29,7 +29,7 @@ dummy_button = st.button('dummy button')
 if st.session_state['login_status'] == False:
   login_form = st.form('Login')
   login_form.subheader('Login 📝')
-  username = login_form.text_input('Username', placeholder='your username')
+  username = login_form.text_input('Username', placeholder='your username', key='username')
   password = login_form.text_input('Password', type='password', placeholder='your password')
   if login_form.form_submit_button('Login'):
     if len(username) <= 0:
@@ -48,6 +48,7 @@ if st.session_state['login_status'] == False:
           st.session_state['username'] = username
           #st.write('Welcome na krub, {}'.format(username))
           st.write('Welcome na sess, {}'.format(st.session_state['username']))
+          ### --- SIDEBAR --- ###
           st.sidebar.write('Welcome, {}'.format(st.session_state['username']))
           st.sidebar.button('Logout', on_click=logout_func)
           st.sidebar.button('Reset Password')
