@@ -313,6 +313,7 @@ def last10_history():  # ********
     
 ### ------ TESTING MODULE ------ ###
 def test_model():
+  global x_episodes, eval_action_history, eval_acc_reward_history, eval_account_balance_history
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
