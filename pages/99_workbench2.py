@@ -4,7 +4,9 @@ import pandas as pd
 from deta import Deta
 import time
 
-from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, train_result, test_model, test_result, save_model
+from functions import fetch_price_data, observe_price, split_dataset2, set_parameters
+from functions import set_train_episodes, train_model, train_result, test_model, test_result
+from functions import save_model
 
 ### --- DATABASE CONNECTION --- ###
 deta = Deta(st.secrets["deta_key"])
