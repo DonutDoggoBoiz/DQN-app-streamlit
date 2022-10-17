@@ -150,7 +150,7 @@ def set_train_episodes():
     train_episodes = st.number_input('Number of training episodes:', value=2, step=1, min_value=0)
     
 def train_model():
-  global action_history, acc_reward_history, account_balance_history, n_episodes
+  global action_history, acc_reward_history, account_balance_history, n_episodes, window_size
   ### --- environment parameters
   action_space = 2      # consist of 0(Sell) , 1(Buy)
   window_size = 5      # n-days of prices used as observation or state
@@ -263,12 +263,13 @@ def train_model():
   ### --- end of all episodes --- ###
 def train_result():
   record_num = np.array(action_history).shape[0]
-  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
-  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
-  acc_reward_hist_array = np.transpose(np_acc_reward_history)
+  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
+  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
   st.write('Reward History of last episode')
   st.line_chart(acc_reward_hist_array) #[-1])
-  alt_reward_history = alt.Chart(acc_reward_hist_array).mark_line()
+  train_date_col = df_price_train.reset_index()[window_size:len(df_price_train)-1]['Date']
+  reward_history_df = pd.DataFrame(np_acc_reward_history, index=train_date_col)
+  alt_reward_history = alt.Chart(reward_history_df).mark_line()
                       #.encode(x = alt.X('Date'), 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
@@ -282,9 +283,9 @@ def train_result():
 # --- reshape history data to array ---
 def reshape_history():
   record_num = np.array(action_history).shape[0]
-  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
-  np_action_history = np.reshape( np.array(action_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
-  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(n_episodes) , int(record_num/n_episodes) ) )
+  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
+  np_action_history = np.reshape( np.array(action_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
+  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
   # --- print shape of history arrays ---
   print('np_acc_reward_history.shape: {}'.format(np_acc_reward_history.shape))
   print('np_action_history.shape: {}'.format(np_action_history.shape))
