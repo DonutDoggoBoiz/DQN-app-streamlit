@@ -273,12 +273,22 @@ def train_result():
   #st.write('acc reward shape: {}'.format(np_acc_reward_history.shape) )
   #st.write('train date col len: {}'.format(len(train_date_col)) )
   #st.dataframe(reward_history_df)
-  alt_reward_history = alt.Chart(reward_history_df).mark_line()
+  alt_data = pd.DataFrame({
+              'Date': reward_history_df['Date'],
+              'Episode 1': reward_history_df['0'],
+              'Episode 2': reward_history_df['1'] })
+  
+  alt_chart = alt.Chart(source).transform_fold(['Episode 1', 'Episode 2'],
+                                               as_=['Episode', 'acc_reward']
+                                              ).mark_line().encode(x='Date',
+                                                                   y='acc_reward',
+                                                                   color='Episode')
+  #alt_reward_history = alt.Chart(reward_history_df).mark_line()
                       #.encode(x = alt.X('Date'))#, 
                       #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
                       #color = 'split' ,
                       #tooltip=['Date','Close','split'] ).interactive()
-  st.altair_chart(alt_reward_history, use_container_width=True)
+  st.altair_chart(alt_chart, use_container_width=True)
   st.write('Account Balance History of last episode')
   st.line_chart(np.transpose(np_account_balance_history)) #[-1])
 
