@@ -80,13 +80,16 @@ else:
     with col3:
       col3_b = st.button('col 3 GO')
     
+    placeholder2 = st.empty()
+    
     with placeholder.container():
         st.write('### Welcome, {}'.format(st.session_state['username']))
       
     if col3_b or st.session_state['col3_b_status']:  
       st.session_state['col3_b_status'] = True
-      with placeholder.container():
-        st.write('proceed')
+      placeholder.text('proceed')
+      with placeholder2.container():
+        st.write('proceed 22')
         ### ------------ INTERFACE ------------ ###
         tab_list = ["Select Data 📈", "Set Parameters 💡", "Train Model 🚀", "Test Model 🧪", "Save Model 💾", "PENDING"]
         select_data_tab, set_para_tab, train_tab, test_tab, save_tab, pending_tab = st.tabs(tab_list)
