@@ -45,6 +45,6 @@ try:
         st.write('Initial Balance : {:,} THB'.format(selected_data[0]['initial_balance']))
         st.write('Trading Size : {:.2f}%'.format(selected_data[0]['trading_size']*100))
 except:
-  placeholder.container():
+  with placeholder.container():
     st.success('Loading...')
         
