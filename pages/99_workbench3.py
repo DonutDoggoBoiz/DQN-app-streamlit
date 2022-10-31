@@ -50,18 +50,19 @@ with placeholder2.container():
 if del_mod_button or st.session_state['del_mod_button_status']:
   st.session_state['del_mod_button_status'] = True
   with placeholder3.container():
-    with st.form('make_sure'):
+    with st.form('del_make_sure'):
       st.write('Are you sure?')
       make_sure_radio = st.radio('Please confirm your choice:', 
                                  options=('No', 'Yes') )
       confirm_button = st.form_submit_button('Confirm')
-      if confirm_button and make_sure_radio == 'No':
-        st.session_state['del_mod_button_status'] = False
-        st.error('Model xxx has been successfully deleted')
-        time.sleep(4)
-      else:
-        st.session_state['del_mod_button_status'] = False
-        placeholder3.empty()
+      if confirm_button:
+        if make_sure_radio == 'Yes':
+          st.session_state['del_mod_button_status'] = False
+          st.error('Model xxx has been successfully deleted')
+          time.sleep(4)
+        elif: make_sure_radio == 'No':
+          st.session_state['del_mod_button_status'] = False
+          placeholder3.empty()
   
 #if selected_data == False:
 #  placeholder.empty()
