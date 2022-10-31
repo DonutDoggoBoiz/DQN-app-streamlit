@@ -58,8 +58,8 @@ if del_mod_button or st.session_state['del_mod_button_status']:
       if confirm_button:
         if make_sure_radio == 'Yes':
           st.session_state['del_mod_button_status'] = False
-          st.error('Model xxx has been successfully deleted')
-          time.sleep(4)
+          st.error('Model {} has been successfully deleted'.format(selected_data[0]['model_name']))
+          time.sleep(3)
         elif make_sure_radio == 'No':
           st.session_state['del_mod_button_status'] = False
           placeholder3.empty()
