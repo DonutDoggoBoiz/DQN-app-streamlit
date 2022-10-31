@@ -35,7 +35,7 @@ placeholder2 = st.empty()
 placeholder3 = st.empty()
 
 with placeholder2.container():
-  ph2col1, ph2col2, _ = st.column([1,1,4])
+  ph2col1, ph2col2, _ = st.columns([1,1,4])
   with ph2col1:
     edit_mod_button = st.button('Edit')
   with ph2col2:
