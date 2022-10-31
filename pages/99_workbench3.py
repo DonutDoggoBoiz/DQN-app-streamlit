@@ -25,6 +25,7 @@ gridoptions = gb.build()
 
 grid_response = AgGrid(data_df,
                        fit_columns_on_grid_load=True,
+                       pre_selected_rows=[0],
                        gridOptions=gridoptions)
 
 data = grid_response['data']
