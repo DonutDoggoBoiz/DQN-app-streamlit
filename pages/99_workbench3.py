@@ -32,10 +32,13 @@ selected_data = grid_response['selected_rows']
 
 placeholder = st.empty()
 
-with placeholder.container():
-  with st.expander('selected model'):
-    st.write('Name : {}'.format(selected_data[0]['model_name']))
-    st.write('Gamma : {:.2f}'.format(selected_data[0]['gamma']))
-    st.write('Learning Rate : {:.3f}'.format(selected_data[0]['learning_rate']))
-    st.write('Initial Balance : {:,} THB'.format(selected_data[0]['initial_balance']))
-    st.write('Trading Size : {:.2f}%'.format(selected_data[0]['trading_size']*100))
+if selected_data == False:
+  placeholder.empty()
+else:
+  with placeholder.container():
+    with st.expander('selected model'):
+      st.write('Name : {}'.format(selected_data[0]['model_name']))
+      st.write('Gamma : {:.2f}'.format(selected_data[0]['gamma']))
+      st.write('Learning Rate : {:.3f}'.format(selected_data[0]['learning_rate']))
+      st.write('Initial Balance : {:,} THB'.format(selected_data[0]['initial_balance']))
+      st.write('Trading Size : {:.2f}%'.format(selected_data[0]['trading_size']*100))
