@@ -7,6 +7,12 @@ import time
 from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 ### ---------------------- ###
 
+if 'del_mod_button_status' not in st.session_state:
+  st.session_state['del_mod_button_status'] = False
+  
+### ---------------------- ###
+
+
 data_dict = {'model_name': ['bbl_01','bbl_02','ppt_05','scg_111','mint_01'],
              'gamma': [0.90,0.80,0.85,0.75,0.95],
              'learning_rate': [0.001,0.002,0.005,0.04,0.099],
@@ -41,7 +47,8 @@ with placeholder2.container():
   with ph2col2:
     del_mod_button = st.button('Delete')
     
-if del_mod_button:
+if del_mod_button or st.session_state['del_mod_button_status']:
+  st.session_state['del_mod_button_status'] = True
   with placeholder3.container():
     with st.form('make_sure'):
       st.write('Are you sure?')
@@ -49,8 +56,11 @@ if del_mod_button:
                                  options=('No', 'Yes') )
       confirm_button = st.form_submit_button('Confirm')
       if confirm_button and make_sure_radio == 'No':
+        st.session_state['del_mod_button_status'] = False
         st.error('Model xxx has been successfully deleted')
+        time.sleep(4)
       else:
+        st.session_state['del_mod_button_status'] = False
         placeholder3.empty()
   
 #if selected_data == False:
