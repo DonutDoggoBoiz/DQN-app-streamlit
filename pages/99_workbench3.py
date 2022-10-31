@@ -20,12 +20,11 @@ st.dataframe(data_df)
 gb = GridOptionsBuilder.from_dataframe(data_df)
 #gb.configure_pagination(paginationAutoPageSize=True) #Add pagination
 #gb.configure_side_bar() #Add a sidebar
-gb.configure_selection('single', use_checkbox=True)
+gb.configure_selection('single', use_checkbox=True, pre_selected_rows=[0])
 gridoptions = gb.build()
 
 grid_response = AgGrid(data_df,
                        fit_columns_on_grid_load=True,
-                       pre_selected_rows=[0],
                        gridOptions=gridoptions)
 
 data = grid_response['data']
