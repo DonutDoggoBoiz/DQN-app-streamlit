@@ -31,14 +31,35 @@ data = grid_response['data']
 selected_data = grid_response['selected_rows'] 
 
 placeholder = st.empty()
+placeholder2 = st.empty()
+placeholder3 = st.empty()
 
+with placeholder2.container():
+  ph2col1, ph2col2, _ = st.column([1,1,4])
+  with ph2col1:
+    edit_mod_button = st.button('Edit')
+  with ph2col2:
+    del_mod_button = st.button('Delete')
+    
+if del_mod_button:
+  with placeholder3.container():
+    with st.form('make_sure'):
+      st.write('Are you sure?')
+      make_sure_radio = st.radio('Please confirm your choice:', 
+                                 options=('No', 'Yes') )
+      confirm_button = st.form_submit_button('Confirm')
+      if confirm_button and make_sure_radio == 'No':
+        st.error('Model xxx has been successfully deleted')
+      else:
+        placeholder3.empty()
+  
 #if selected_data == False:
 #  placeholder.empty()
 #else:
 try:
   placeholder.empty()
   with placeholder.container():
-    with st.expander('selected model'):
+    with st.expander('More model information:'):
         st.write('Name : {}'.format(selected_data[0]['model_name']))
         st.write('Gamma : {:.2f}'.format(selected_data[0]['gamma']))
         st.write('Learning Rate : {:.3f}'.format(selected_data[0]['learning_rate']))
