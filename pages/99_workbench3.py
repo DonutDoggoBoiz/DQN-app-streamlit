@@ -29,6 +29,7 @@ grid_response = AgGrid(data_df,
 data = grid_response['data']
 selected_data = grid_response['selected_rows'] 
 #df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
-st.write(selected_data)
+#st.write(selected_data)
+st.write(selected_data[0])
 with st.expander('data'):
   st.write(data)
