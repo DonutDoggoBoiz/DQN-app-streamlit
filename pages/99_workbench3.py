@@ -30,6 +30,6 @@ data = grid_response['data']
 selected_data = grid_response['selected_rows'] 
 #df = pd.DataFrame(selected) #Pass the selected rows to a new dataframe df
 #st.write(selected_data)
-st.write(selected_data[0]['model_name'])
+st.write(selected_data['model_name'])
 with st.expander('data'):
   st.write(data)
