@@ -34,12 +34,13 @@ if gcs_switch:
 
 show_file = st.button('Show local file')
 save_file = st.button('Save to GCS')
+ls_file = st.buttin('
 
 if show_file:
   try:
     local_df = pd.read_csv(local_path)
     st.write(local_df.shape)
-    st.dataframe(local_df)
+    st.dataframe(local_df.iloc[:10,:10)
   except:
     st.error('ERROR LOCAL')
     
