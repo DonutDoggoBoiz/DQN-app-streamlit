@@ -41,7 +41,7 @@ if show_gcs_file:
     #gcs_df = pd.read_csv(content2)
     #st.dataframe(gcs_df)
     str_csv = str(content2)[:20]
-    st.write(type(str_csv)
+    st.write(type(str_csv))
   except:
     st.error('ERROR GCS')
 if show_local_file:
