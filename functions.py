@@ -9,6 +9,12 @@ import datetime
 import time
 from deta import Deta
 #####-----------------------------------------#####
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.models import load_model
+from tensorflow.keras.models import save_model
+#####-----------------------------------------#####
 from google.oauth2 import service_account
 from google.cloud import storage
 #####-----------------------------------------#####
@@ -373,12 +379,15 @@ def test_model():
           eval_eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
+  
+#####-----------------------------------------#####
 
+### from tensorflow.keras.models import save_model
 def save_model():
   global save_username
   save_username = 'random_user'
   path = 'models/'+str(save_username)+'/'+str(agent.model_file)+'.h5'
-  agent.q_eval.save(path)
+  agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
 
 def upload_model_gcs():
   gsave_username = save_username
@@ -387,7 +396,10 @@ def upload_model_gcs():
   gcs_path = 'gcs_model/'+str(save_username)+'/'+str(ag_name)+'.h5'
   gcs_blob = bucket.blob(gcs_path)
   gcs_blob.upload_from_filename(local_path)
-
+  
+#####-----------------------------------------#####
+  
+  
   
 ###### --------------------
 def login_form():
