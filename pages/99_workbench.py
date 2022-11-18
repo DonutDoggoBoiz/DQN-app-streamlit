@@ -120,7 +120,7 @@ def observe_price():
       x = alt.X('Date'),
       y = alt.Y('Close',
                 scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10])),
-      tooltip=['Date','Close']))
+      tooltip=['Date','Close'])
   st.altair_chart(c.mark_line().interactive(), use_container_width=True)
   st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
   global split_point
