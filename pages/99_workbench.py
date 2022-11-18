@@ -36,7 +36,7 @@ if gcs_switch:
   content3 = bucket.blob(file_path).open(mode='rb')
 show_gcs_file = st.button('Show GCS file')
 show_local_file = st.button('Show local file')
-write_bytes = st.buttin('Write bytes')
+write_bytes = st.button('Write bytes')
 
 if show_gcs_file:
   try:
