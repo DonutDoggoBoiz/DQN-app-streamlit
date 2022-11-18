@@ -30,24 +30,23 @@ file_path = 'gcs_mnist_test.csv'
 gcs_switch = st.checkbox('GCS Switch')
 if gcs_switch:
   local_path = 'models/gcs_mnist_test.csv'
-  local_path2 = 'models/gcs_mnist_test2.csv'
   content = bucket.blob(file_path).download_to_filename(local_path)
 
-show_gcs_file = st.button('Show GCS file')
-show_local_file = st.button('Show local file')
+show_file = st.button('Show local file')
+save_file = st.button('Save to GCS')
 
-if show_gcs_file:
-  try:
-    #gcs_df = pd.read_csv(content2)
-    #st.dataframe(gcs_df)
-    st.write('content2 is :')
-    st.write(type(content))
-  except:
-    st.error('ERROR GCS')
-    
 if show_local_file:
   try:
     local_df = pd.read_csv(local_path)
+    st.write(local_df.shape)
     st.dataframe(local_df)
   except:
     st.error('ERROR LOCAL')
+    
+if save_file:
+  try:
+    gcs_path = 'csv_blob/df_100.csv'
+    gcs_blob = bucket.blob(gcs_path)
+    gcs_blob.upload_from_filename(local_path)
+    except:
+    st.error('ERROR UPLOAD GCS')
