@@ -38,7 +38,7 @@ if gcs_switch:
   if show_gcs_file:
     #gcs_df = pd.read_csv(content2)
     #st.dataframe(gcs_df)
-    st.write(type(content2))
+    st.write(str(content2))
   if show_local_file:
     local_df = pd.read_csv(local_path)
     st.dataframe(local_df)
