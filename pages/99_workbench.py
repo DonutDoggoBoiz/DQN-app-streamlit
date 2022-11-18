@@ -1,5 +1,6 @@
 ### --- IMPORT LIBRARY --- ###
 import streamlit as st
+import altair as alt
 import numpy as np
 import pandas as pd
 import yfinance as yf
@@ -316,19 +317,24 @@ set_param_button = st.checkbox('set param')
 train_button = st.checkbox('train train')
 
 if fetch_price_button:
-  fetch_price_data()
+    fetch_price_data()
+    st.success('fetch price DONE')
                          
 if observe_button:
-  observe_price()
+    observe_price()
+    st.success('observe price DONE')
                          
 if split_data:
-  split_dataset()
-                         
+    split_dataset()
+    st.success('split data DONE')
+
 if set_param_button:
-  set_parameters()
+    set_parameters()
+    st.success('set param DONE')
                          
 if train_button:
-  train_model()
+    train_model()
+    st.success('set param DONE')
                                
                                
                                
