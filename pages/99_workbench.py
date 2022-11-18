@@ -117,10 +117,10 @@ def fetch_price_data():
   
 def observe_price():
   c = alt.Chart(df_price['Close'].reset_index()).encode(
-    x = alt.X('Date'),
-    y = alt.Y('Close',
-              scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10])),
-    tooltip=['Date','Close']))
+      x = alt.X('Date'),
+      y = alt.Y('Close',
+                scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10])),
+      tooltip=['Date','Close']))
   st.altair_chart(c.mark_line().interactive(), use_container_width=True)
   st.write('This dataset contains ' + str(df_length) + ' days of historical prices')
   global split_point
