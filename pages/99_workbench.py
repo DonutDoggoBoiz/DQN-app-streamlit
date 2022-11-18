@@ -48,5 +48,5 @@ if save_file:
     gcs_path = 'csv_blob/df_100.csv'
     gcs_blob = bucket.blob(gcs_path)
     gcs_blob.upload_from_filename(local_path)
-    except:
+  except:
     st.error('ERROR UPLOAD GCS')
