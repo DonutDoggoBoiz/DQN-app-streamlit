@@ -109,9 +109,9 @@ class Agent():
 ##############################
 def fetch_price_data():
   global df_price, df_length
-  stock_name = st.selectbox('Select your Stock', ('BBL', 'PTT', 'ADVANC','KBANK'))
-  start_date = st.date_input("Select start date: ", datetime.date(2021, 5, 18))
-  end_date = st.date_input("Select end date: ", datetime.date(2022, 11, 18))
+  stock_name = 'BBL'
+  start_date = datetime.date(2021, 5, 18)
+  end_date = datetime.date(2022, 11, 18)
   stock_code = stock_name + '.BK'
   df_price = yf.download(stock_code,
                         start=start_date,
