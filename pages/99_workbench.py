@@ -1,12 +1,14 @@
 ### --- IMPORT LIBRARY --- ###
 import streamlit as st
+import numpy as np
 import pandas as pd
+import yfinance as yf
+##############################
 from deta import Deta
 ##############################
 import datetime
 import time
 ##############################
-import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import storage
 ##############################
