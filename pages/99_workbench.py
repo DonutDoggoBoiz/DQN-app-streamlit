@@ -33,17 +33,16 @@ if gcs_switch:
   local_path2 = 'models/gcs_mnist_test2.csv'
   content = bucket.blob(file_path).download_to_filename(local_path)
   content2 = bucket.blob(file_path).download_as_string()
-  
+  content3 = bucket.blob(file_path).open(mode='rb')
 show_gcs_file = st.button('Show GCS file')
 show_local_file = st.button('Show local file')
 if show_gcs_file:
   try:
     #gcs_df = pd.read_csv(content2)
     #st.dataframe(gcs_df)
-    str_csv = str(content2)[:100]
-    st.write(type(str_csv))
+    st.write(type(content3))
     with st.expander('show string', expanded=True):
-      st.write(str_csv)
+      st.write('123456')
   except:
     st.error('ERROR GCS')
 if show_local_file:
