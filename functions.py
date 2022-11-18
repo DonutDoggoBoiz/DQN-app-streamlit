@@ -8,6 +8,10 @@ import altair as alt
 import datetime
 import time
 from deta import Deta
+#####-----------------------------------------#####
+from google.oauth2 import service_account
+from google.cloud import storage
+#####-----------------------------------------#####
 
 ### --- DATABASE CONNECTION --- ###
 deta = Deta(st.secrets["deta_key"])
@@ -17,7 +21,7 @@ stock_df = pd.DataFrame(stock_db.fetch().items)
 stock_list = stock_df['symbol'].sort_values(ascending=True)
 #stock_list_sorted = stock_list.sort()
 
-# ---------------------------- #
+#----------------------------#
 # DEMO username
 username = 'admin99'
 
@@ -28,6 +32,16 @@ model2 = {'username':'admin', 'model_name':'ptt_04', 'stock_quote':'ptt'.upper()
 model_list.append(model1)
 model_list.append(model2)
 model_df = pd.DataFrame(model_list)
+
+
+#####-----------------------------------------#####
+# Create API client.
+credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
+client = storage.Client(credentials=credentials)
+path_uri = 'gs://streamlitapphost.appspot.com/gcs_mnist_test.csv'
+bucket_name = "streamlitapphost.appspot.com"
+bucket = client.bucket(bucket_name)
+#####-----------------------------------------#####
 
 #### ------ PRICE FETCHING MODULE ------ ###
 def fetch_price_data():
@@ -259,58 +273,9 @@ def train_model():
           total_acc_reward_history.append(acc_reward)
           end_balance_history.append(account_balance)
           eps_history.append(agent.epsilon)
-      
   ### --- end of all episodes --- ###
-def train_result():
-  record_num = np.array(action_history).shape[0]
-  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
-  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
-  st.write('Reward History of last episode')
-  st.line_chart(np_acc_reward_history) #[-1]
-  train_date_col = df_price_train.reset_index()[window_size:len(df_price_train)-1]['Date']
-  reward_history_df = pd.DataFrame(np_acc_reward_history, index=train_date_col)
-  reward_history_df = reward_history_df.reset_index()
-  #st.write('acc reward shape: {}'.format(np_acc_reward_history.shape) )
-  #st.write('train date col len: {}'.format(len(train_date_col)) )
-  #st.dataframe(reward_history_df)
-  #alt_data = pd.DataFrame({
-              #'Date': reward_history_df['Date'],
-              #'Episode 1': reward_history_df['0'],
-              #'Episode 2': reward_history_df['1'] })
-  
-  #alt_chart = alt.Chart(source).transform_fold(['Episode 1', 'Episode 2'],
-                                               #as_=['Episode', 'acc_reward']
-                                              #).mark_line().encode(x='Date',
-                                               #                    y='acc_reward',
-                                                #                   color='Episode')
-  #alt_reward_history = alt.Chart(reward_history_df).mark_line()
-                      #.encode(x = alt.X('Date'))#, 
-                      #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                      #color = 'split' ,
-                      #tooltip=['Date','Close','split'] ).interactive()
-  #st.altair_chart(alt_chart, use_container_width=True)
-  st.write('Account Balance History of last episode')
-  st.line_chart(np_account_balance_history) #[-1])
 
-  
-  
-# --- reshape history data to array ---
-def reshape_history():
-  record_num = np.array(action_history).shape[0]
-  np_acc_reward_history = np.reshape( np.array(acc_reward_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
-  np_action_history = np.reshape( np.array(action_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
-  np_account_balance_history = np.reshape( np.array(account_balance_history) , ( int(record_num/n_episodes) , int(n_episodes) ) )
-  # --- print shape of history arrays ---
-  print('np_acc_reward_history.shape: {}'.format(np_acc_reward_history.shape))
-  print('np_action_history.shape: {}'.format(np_action_history.shape))
-  print('np_account_balance_history.shape: {}'.format(np_account_balance_history.shape))
 
-# plot last 10 episodes of acc_reward_history
-def last10_history():  # ********
-  for i in range(n_episodes-10,n_episodes):
-    pd.DataFrame(np_acc_reward_history[i]).plot(figsize=(6,3), title='episode'+str(i+1), legend=False)
-    
-    
 ### ------ TESTING MODULE ------ ###
 def test_model():
   global x_episodes, eval_action_history, eval_acc_reward_history, eval_account_balance_history
@@ -389,9 +354,6 @@ def test_model():
 
         done = True if current_tick == end_tick else False
 
-        #agent.store_transition(state, action, reward, new_state, done)
-        #agent.learn()
-
         current_tick += 1
         state = new_state
         new_state = test_prices[ (current_tick - window_size) + 1 : current_tick+1 ]
@@ -402,37 +364,29 @@ def test_model():
         eval_account_balance_history.append(account_balance)
 
         if done: 
-          # print ("-----------------------------------------")
-          #print ("Total Reward: {:.2f} , Account_Balance: {:2f}".format(acc_reward, account_balance) )
-          #print ("-----------------------------------------")
           st.write("---Episode {} of {} done...".format(i+1, x_episodes) )
           st.write("---Total Reward: {:.2f} | Account_Balance: {:.2f}".format(acc_reward, account_balance) )
-        ### --- end of 1 episode --- ###
+          ### --- end of 1 episode --- ###
 
           eval_total_acc_reward_history.append(acc_reward)
           eval_end_balance_history.append(account_balance)
           eval_eps_history.append(agent.epsilon)
       
   ### --- end of all episodes --- ###
-def test_result():
-  record_num = np.array(eval_action_history).shape[0]
-  np_eval_acc_reward_history = np.reshape( np.array(eval_acc_reward_history) , ( int(record_num/x_episodes) , int(x_episodes) ) )
-  np_eval_account_balance_history = np.reshape( np.array(eval_account_balance_history) , ( int(record_num/x_episodes) , int(x_episodes) ) )
-  st.write('Reward History of testing episode')
-  st.line_chart(np_eval_acc_reward_history) #[-1])
-  #alt_reward_history = alt.Chart(df_price.reset_index()).mark_line().encode(x = alt.X('Date'), 
-                      #y = alt.Y('Close', scale=alt.Scale(domain=[df_price['Close'].min()-10, df_price['Close'].max()+10]) ) ,
-                      #color = 'split' ,
-                      #tooltip=['Date','Close','split'] ).interactive()
-  st.write('Account Balance History of testing episode')
-  st.line_chart(np_eval_account_balance_history) #[-1])
 
 def save_model():
-  #save_path = "models/" + str(agent.model_file)
-  #agent.q_eval.save('models/' + 'h5_file.h5')
-  new_model = {'username':username, 'model_name':agent_name, 'stock_quote':stock_name.upper()}
-  model_df.loc[len(model_df.index)] = new_model
-  st.write(model_df)
+  global save_username
+  save_username = 'random_user'
+  path = 'models/'+str(save_username)+'/'+str(agent.model_file_name)+'.h5'
+  agent.q_eval.save(path)
+
+def upload_model_gcs():
+  gsave_username = save_username
+  ag_name = agent.model_file_name
+  local_path = 'models/'+str(save_username)+'/'+str(ag_name)+'.h5'
+  gcs_path = 'gcs_model/'+str(save_username)+'/'+str(ag_name)+'.h5'
+  gcs_blob = bucket.blob(gcs_path)
+  gcs_blob.upload_from_filename(local_path)
 
   
 ###### --------------------
