@@ -35,7 +35,7 @@ if gcs_switch:
 show_file = st.button('Show local file')
 save_file = st.button('Save to GCS')
 
-if show_local_file:
+if show_file:
   try:
     local_df = pd.read_csv(local_path)
     st.write(local_df.shape)
