@@ -58,8 +58,8 @@ if show_local_file:
     
 if write_bytes:
   try:
-    with open(local_path2,'wb') as f:
-      csv_bytes = f.write(content2)
+    csv_bytes = open(local_path2, 'wb')
+    csv_bytes.write(content2)
     st.write('csv_byte is :')
     st.write(type(csv_byte))
   except:
