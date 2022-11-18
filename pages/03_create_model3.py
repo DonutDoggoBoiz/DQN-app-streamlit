@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import datetime
-from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, test_model, save_model
+from functions import fetch_price_data, observe_price, split_dataset2, set_parameters, set_train_episodes, train_model, test_model, save_model, upload_model_gcs
 
 
 ### ------------ session state ------------ ###
@@ -50,14 +50,15 @@ with test_tab:
         test_model()
     
 with save_tab:
-    st.header("Save your model")
-    show_model_list_checkbox = st.checkbox('Show model list')
-    if show_model_list_checkbox:
-      st.write(model_df)
-    save_button = st.button("Save 💾")
+    save_button = st.button("Save to local 💾")
+    gcs_button = st.button('Save to GCS ☁️')
     if save_button:
         save_model()
-        st.success("Your model is saved successfully")
+        st.success("Your model is saved LOCALLY!")
+    if gcs_button:
+        upload_model_gcs()
+        st.success("Your model is saved in GCS!")
+        
         
         
 with pending_tab:
