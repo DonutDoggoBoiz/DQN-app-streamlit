@@ -44,5 +44,6 @@ if gcs_switch:
   if show_gcs_file:
     st.dataframe(content)
   if show_local_file:
-    st.dataframe(local_path)
+    local_df = pd.read_csv(local_path)
+    st.dataframe(local_df)
 
