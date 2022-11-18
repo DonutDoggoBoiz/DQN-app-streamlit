@@ -42,6 +42,8 @@ if show_gcs_file:
     #st.dataframe(gcs_df)
     str_csv = str(content2)[:20]
     st.write(type(str_csv))
+    with st.expander('show string', expanded=True):
+      st.write(str_csv)
   except:
     st.error('ERROR GCS')
 if show_local_file:
