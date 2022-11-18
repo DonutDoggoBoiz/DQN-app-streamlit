@@ -40,7 +40,7 @@ if show_gcs_file:
   try:
     #gcs_df = pd.read_csv(content2)
     #st.dataframe(gcs_df)
-    str_csv = str(content2)[:20]
+    str_csv = str(content2)[:100]
     st.write(type(str_csv))
     with st.expander('show string', expanded=True):
       st.write(str_csv)
