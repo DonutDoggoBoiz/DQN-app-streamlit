@@ -21,7 +21,7 @@ from google.cloud import storage
 # Create API client.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
 client = storage.Client(credentials=credentials)
-
+path_uri = 'gs://streamlitapphost.appspot.com/gcs_mnist_test.csv'
 bucket_name = "streamlitapphost.appspot.com"
 bucket = client.bucket(bucket_name)
 
@@ -30,14 +30,14 @@ file_path = 'gcs_mnist_test.csv'
 gcs_switch = st.checkbox('GCS Switch')
 if gcs_switch:
   local_path = 'models/gcs_mnist_test.csv'
+  local_path2 = 'models/gcs_mnist_test2.csv'
   content = bucket.blob(file_path).download_to_filename(local_path)
-  content2 = bucket.blob(file_path).download_as_text()
   show_gcs_file = st.button('Show GCS file')
   show_local_file = st.button('Show local file')
   if show_gcs_file:
-    gcs_df = pd.read_csv(content2)
-    st.dataframe(gcs_df)
+    #gcs_df = pd.read_csv(content2)
+    #st.dataframe(gcs_df)
+    st.write(type(content))
   if show_local_file:
-    local_df = pd.read_csv(local_path)
+    local_df = pd.read_csv(local_path2)
     st.dataframe(local_df)
-
