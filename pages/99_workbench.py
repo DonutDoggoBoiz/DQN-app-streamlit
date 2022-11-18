@@ -25,14 +25,6 @@ client = storage.Client(credentials=credentials)
 bucket_name = "streamlitapphost.appspot.com"
 bucket = client.bucket(bucket_name)
 
-# Retrieve file contents.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-def read_file(bucket_name, file_path):
-    bucket = client.bucket(bucket_name)
-    content = bucket.blob(file_path).download_as_string().decode("utf-8")
-    return content
-
-bucket_name = "streamlit-bucket"
 file_path = 'gcs_mnist_test.csv'
 
 gcs_switch = st.checkbox('GCS Switch')
