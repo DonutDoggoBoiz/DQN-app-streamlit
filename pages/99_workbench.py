@@ -304,9 +304,9 @@ if save_file:
 ##############################
 
 st.write('TEST TRAIN TO SAVE')
-fetch_price_button = st.checkbox('fetch price)
-observe_button = st.checkbox('observe price)
-split_data = st.checkbox('split price)
+fetch_price_button = st.checkbox('fetch price')
+observe_button = st.checkbox('observe price')
+split_data = st.checkbox('split price')
 set_param_button = st.checkbox('set param')
 train_button = st.checkbox('train train')
 
