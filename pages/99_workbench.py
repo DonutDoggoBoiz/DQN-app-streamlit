@@ -45,8 +45,12 @@ if show_file:
     
 if save_file:
   try:
-    gcs_path = 'csv_blob/df_100.csv'
+    csv_path = 'models/df_100.csv'
+    local_df = pd.read_csv(local_path)
+    local_df.iloc[:20,:5].to_csv(csv_path)
+    gcs_path = 'csv_blob/gcs_df_100.csv'
     gcs_blob = bucket.blob(gcs_path)
-    gcs_blob.upload_from_filename(local_path)
+    gcs_blob.upload_from_filename(csv_path)
+    st.success('UPLOAD DONE!')
   except:
     st.error('ERROR UPLOAD GCS')
