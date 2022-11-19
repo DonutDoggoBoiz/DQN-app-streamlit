@@ -13,7 +13,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
-from tensorflow.keras.models import save_model
+#from tensorflow.keras.models import save_model
 #####-----------------------------------------#####
 from google.oauth2 import service_account
 from google.cloud import storage
@@ -387,8 +387,8 @@ def save_model():
   global save_username
   save_username = 'random_user'
   path = 'models/'+str(save_username)+'/'+str(agent.model_file)+'.h5'
-  #agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
-  save_model(agent.q_eval, path)
+  agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
+  #save_model(agent.q_eval, path)
 
 def upload_model_gcs():
   gsave_username = save_username
