@@ -108,7 +108,7 @@ if write_selected_row:
   st.write('selected_row model_name: {}'.format(selected_row[0]['model_name']))
   st.write('selected_row detour key panda: {}, type: {}'.format(detour_key_pd, type(detour_key_pd)))
   st.write('detour key list: {}, type: {}'.format(detour_key_list, type(detour_key_list)))
-  st.write('detour key object: {}, type: {}'.format(detour_key, type(detour_key)))
+  st.write('detour key object: {}, type: {}'.format(detour_key_object, type(detour_key)))
   
 if selected_row_df:
   st.dataframe(selected_row[0])
