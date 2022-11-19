@@ -17,7 +17,7 @@ deta = Deta(st.secrets["deta_key"])
 user_db = deta.Base("user_db")
 model_db = deta.Base("model_db")
 model_frame = pd.DataFrame(model_db.fetch().items)
-model_frame2 = pd.DataFrame(model_db.fetch({'username':st.session_state['username']}.items))
+model_frame2 = pd.DataFrame(model_db.fetch({'username':st.session_state['username']}).items)
 ### ---------------------- ###
 
 
