@@ -34,6 +34,10 @@ grid_response = AgGrid(model_for_grid,
 grid_data = grid_response['data']
 selected_row = grid_response['selected_rows'] 
 
+### ---------------------- ###
+
+placeholder_4 = st.empty()
+
 with placeholder_4.container():
   ph2col1, ph2col2, _ = st.columns([1,1,6])
   with ph2col1:
@@ -87,12 +91,14 @@ with placeholder_4.container():
             st.session_state['del_mod_button_status'] = False
             st.experimental_rerun()
             
-show_model_frame = st.button('Show model frame 1')
-show_model_frame2 = st.button('Show model frame 2')
+placeholder_end = st.empty()
+with placeholder_end:
+  show_model_frame = st.button('Show model frame 1')
+  show_model_frame2 = st.button('Show model frame 2')
+  write_selected_row = st.button('Write selected row')
 if show_model_frame:
   st.dataframe(model_frame)
 if show_model_frame2:
   st.dataframe(model_frame2)
-write_selected_row = st.button('Write selected row')
 if write_selected_row:
   st.write(selected_row)
