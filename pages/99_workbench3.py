@@ -105,7 +105,8 @@ if write_selected_row:
   detour_key = model_frame2.loc[model_frame2['model_name']==selected_row[0]['model_name'],'key'].values
   st.write('selected_row model_name: {}'.format(selected_row[0]['model_name']))
   st.write('selected_row detour key: {}'.format(detour_key))
-  st.write('detour key type: {}'.format(detour_key))
+  st.write('detour key type: {}'.format(type(detour_key)))
+  st.write('str detour key: {}'.format(str(detour_key)))
   
 if selected_row_df:
   st.dataframe(selected_row[0])
