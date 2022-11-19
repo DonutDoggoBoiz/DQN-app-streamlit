@@ -29,7 +29,7 @@ gb = GridOptionsBuilder.from_dataframe(model_for_grid)
 gb.configure_selection('single', use_checkbox=True, pre_selected_rows=[0])
 gridoptions = gb.build()
 grid_response = AgGrid(model_for_grid,
-                       fit_columns_on_grid_load=True,
+                       fit_columns_on_grid_load=False,
                        gridOptions=gridoptions)
 grid_data = grid_response['data']
 selected_row = grid_response['selected_rows'] 
