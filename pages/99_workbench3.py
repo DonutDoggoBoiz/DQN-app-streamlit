@@ -101,4 +101,4 @@ if show_model_frame:
 if show_model_frame2:
   st.dataframe(model_frame2)
 if write_selected_row:
-  st.write(selected_row)
+  st.write(selected_row[0])
