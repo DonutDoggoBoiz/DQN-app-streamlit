@@ -387,7 +387,8 @@ def save_model():
   global save_username
   save_username = 'random_user'
   path = 'models/'+str(save_username)+'/'+str(agent.model_file)+'.h5'
-  agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
+  #agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
+  save_model(agent.q_eval, path)
 
 def upload_model_gcs():
   gsave_username = save_username
