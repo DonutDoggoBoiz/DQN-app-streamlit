@@ -92,7 +92,7 @@ with placeholder_4.container():
             st.experimental_rerun()
             
 placeholder_end = st.empty()
-with placeholder_end:
+with placeholder_end.container():
   show_model_frame = st.button('Show model frame 1')
   show_model_frame2 = st.button('Show model frame 2')
   write_selected_row = st.button('Write selected row')
