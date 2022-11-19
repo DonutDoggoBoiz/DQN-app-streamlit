@@ -96,9 +96,13 @@ with placeholder_end.container():
   show_model_frame = st.button('Show model frame 1')
   show_model_frame2 = st.button('Show model frame 2')
   write_selected_row = st.button('Write selected row')
+  selected_row_df = st.button('Write selected_row as df')
 if show_model_frame:
   st.dataframe(model_frame)
 if show_model_frame2:
   st.dataframe(model_frame2)
 if write_selected_row:
-  st.write(selected_row[0])
+  st.write('selected_row items:')
+  st.write(selected_row[0].items())
+if selected_row_df:
+  st.dataframe(selected_row[0])
