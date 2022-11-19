@@ -25,7 +25,7 @@ model_frame2 = pd.DataFrame(model_db.fetch({'username':st.session_state['usernam
 shuffle_col = ['model_name','episode_trained','stock_quote','start_date','end_date','initial_balance','trading_size_pct','commission_fee_pct','gamma',]
 frame_for_grid = model_frame2.loc[:,shuffle_col]
 
-gb = GridOptionsBuilder.from_dataframe(model_for_grid)
+gb = GridOptionsBuilder.from_dataframe(frame_for_grid)
 gb.configure_selection('single', use_checkbox=True, pre_selected_rows=[0])
 gridoptions = gb.build()
 grid_response = AgGrid(frame_for_grid,
