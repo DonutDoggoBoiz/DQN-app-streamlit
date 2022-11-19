@@ -13,6 +13,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
+import joblib
 #from tensorflow.keras.models import save_model
 #####-----------------------------------------#####
 from google.oauth2 import service_account
@@ -386,15 +387,16 @@ def test_model():
 def save_model():
   global save_username
   save_username = 'random_user'
-  path = 'models/'+str(save_username)+'/'+str(agent.model_file)+'.h5'
-  agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
+  path = 'models/'+str(save_username)+'/'+str(agent.model_file)+'_joblib'
+  joblib.dump(agent.q_eval, path)
+  #agent.q_eval.save(path) # <------- TO FIX   THIS ONE!!
   #save_model(agent.q_eval, path)
 
 def upload_model_gcs():
   gsave_username = save_username
   ag_name = agent.model_file
-  local_path = 'models/'+str(save_username)+'/'+str(ag_name)+'.h5'
-  gcs_path = 'gcs_model/'+str(save_username)+'/'+str(ag_name)+'.h5'
+  local_path = 'models/'+str(save_username)+'/'+str(ag_name)+'_joblib'
+  gcs_path = 'gcs_model/'+str(save_username)+'/'+str(ag_name)+'_joblib'
   gcs_blob = bucket.blob(gcs_path)
   gcs_blob.upload_from_filename(local_path)
   
