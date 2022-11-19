@@ -21,14 +21,14 @@ model_frame2 = pd.DataFrame(model_db.fetch({'username':st.session_state['usernam
 ### ---------------------- ###
 
 
-model_for_grid = pd.DataFrame(model_db.fetch({'username':'mike1994'}).items)
+#model_for_grid = pd.DataFrame(model_db.fetch({'username':'mike1994'}).items)
 shuffle_col = ['model_name','episode_trained','stock_quote','start_date','end_date','initial_balance','trading_size_pct','commission_fee_pct','gamma',]
-model_grid = model_for_grid.loc[:,shuffle_col]
+frame_for_grid = model_frame2.loc[:,shuffle_col]
 
 gb = GridOptionsBuilder.from_dataframe(model_for_grid)
 gb.configure_selection('single', use_checkbox=True, pre_selected_rows=[0])
 gridoptions = gb.build()
-grid_response = AgGrid(model_for_grid,
+grid_response = AgGrid(frame_for_grid,
                        fit_columns_on_grid_load=False,
                        gridOptions=gridoptions)
 grid_data = grid_response['data']
@@ -102,7 +102,7 @@ if show_model_frame:
 if show_model_frame2:
   st.dataframe(model_frame2)
 if write_selected_row:
-  st.write('selected_row items:')
-  st.write(selected_row[0].items())
+  st.write('selected_row model_name: {}'.format(selected_row[0]['model_name]))
+  st.write('selected_row detour key: {}'.format(model_frame2.loc[model_frame2['model_name']==selected_row[0]['model_name'],'key'].values)
 if selected_row_df:
   st.dataframe(selected_row[0])
