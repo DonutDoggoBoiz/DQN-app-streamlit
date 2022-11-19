@@ -7,3 +7,4 @@ matplotlib
 deta
 streamlit-aggrid
 google-cloud-storage
+joblib
