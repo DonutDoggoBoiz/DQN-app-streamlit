@@ -288,7 +288,7 @@ if show_file:
                 'Tenet':[500,400,300,200,100],
                 'Alphabet':['A','B','C','D','E']}
     local_df = pd.DataFrame(some_dict)
-    to_csv_path = 'model/mike1994/local_df.csv'
+    to_csv_path = 'model/local_df.csv'
     local_df.to_csv('to_csv_path')
     st.write('local_df to_csv   DONE!')
     csv_df = pd.read_csv(to_csv_path)
