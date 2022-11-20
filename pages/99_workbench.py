@@ -284,7 +284,6 @@ just_show_file = st.button('Just Show file')
 save_file = st.button('Save to GCS')
 
 if save_show_file:
-  try:
     some_dict = {'Close':[100,200,300,400,500],
                 'Tenet':[500,400,300,200,100],
                 'Alphabet':['A','B','C','D','E']}
@@ -295,16 +294,12 @@ if save_show_file:
     csv_df = pd.read_csv(to_csv_path)
     st.write('save and show dataframe')
     st.dataframe(csv_df)
-  except:
-    st.error('ERROR SAVE and SHOW')
 
 if just_show_file:
-  try:
+    to_csv_path = 'model/local_df.csv'
     st.write('just show dataframe')
     csv_df = pd.read_csv(to_csv_path)
     st.dataframe(csv_df)
-  except:
-    st.error('ERROR JUST SHOW')
     
 if save_file:
   try:
