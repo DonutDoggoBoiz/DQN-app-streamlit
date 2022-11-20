@@ -82,6 +82,7 @@ with placeholder_4.container():
           if make_sure_radio == 'Yes':
             st.session_state['del_mod_button_status'] = False
             selected_model_name = selected_row[0]['model_name']
+            st.write(selected_model_name)
             key_to_del = model_frame2.loc[model_frame2['model_name']==selected_model_name,'key'].to_list()[0]
             #model_db.delete()
             st.error('Model {} has been successfully deleted with key: {}'.format(selected_model_name, key_to_del))
