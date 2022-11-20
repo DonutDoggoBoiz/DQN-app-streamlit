@@ -81,7 +81,7 @@ with placeholder_4.container():
         if confirm_button:
           if make_sure_radio == 'Yes':
             st.session_state['del_mod_button_status'] = False
-            selected_model_name = selected_row['model_name'][0]
+            selected_model_name = selected_row[0]['model_name']
             st.write(selected_model_name)
             key_to_del = model_frame2.loc[model_frame2['model_name']==selected_model_name,'key'].to_list()[0]
             #model_db.delete()
@@ -106,8 +106,8 @@ if write_selected_row:
   detour_key_pd = model_frame2.loc[model_frame2['model_name']==selected_row[0]['model_name'],'key']
   detour_key_list = detour_key_pd.to_list()
   detour_key_object = detour_key_list[0]
-  st.write(selected_row)
-  st.write(selected_row[0])
+  st.write(selected_row[0].model_name)
+  st.write(selected_row[0]['model_name'])
   st.write(' ')
   st.write('selected_row model_name: {}'.format(selected_row[0]['model_name']))
   st.write('selected_row detour key panda: {}, type: {}'.format(detour_key_pd, type(detour_key_pd)))
