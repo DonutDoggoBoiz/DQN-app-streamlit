@@ -268,7 +268,7 @@ def train_model():
 # Create API client.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
 client = storage.Client(credentials=credentials)
-path_uri = 'gs://streamlitapphost.appspot.com/gcs_mnist_test.csv'
+#path_uri = 'gs://streamlitapphost.appspot.com/gcs_mnist_test.csv'
 bucket_name = "streamlitapphost.appspot.com"
 bucket = client.bucket(bucket_name)
 
@@ -290,15 +290,17 @@ if save_show_file:
                 'Alphabet':['A','B','C','D','E']}
     local_df = pd.DataFrame(some_dict)
     to_csv_path = 'model/local_df.csv'
-    local_df.to_csv('to_csv_path')
+    local_df.to_csv(to_csv_path)
     st.write('local_df to_csv   DONE!')
     csv_df = pd.read_csv(to_csv_path)
+    st.write('save and show dataframe')
     st.dataframe(csv_df)
   except:
     st.error('ERROR SAVE and SHOW')
 
 if just_show_file:
   try:
+    st.write('just show dataframe')
     csv_df = pd.read_csv(to_csv_path)
     st.dataframe(csv_df)
   except:
