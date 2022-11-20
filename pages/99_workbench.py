@@ -262,13 +262,8 @@ def train_model():
           end_balance_history.append(account_balance)
           eps_history.append(agent.epsilon)
           
-##############################
-##############################
-# streamlit_app.py
-
-#import streamlit as st
-#from google.oauth2 import service_account
-#from google.cloud import storage
+##########################################################################################
+##########################################################################################
 
 # Create API client.
 credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
@@ -289,9 +284,15 @@ save_file = st.button('Save to GCS')
 
 if show_file:
   try:
-    local_df = pd.read_csv(local_path)
-    st.write(local_df.shape)
-    st.dataframe(local_df.iloc[:10,:10])
+    some_dict = {'Close':[100,200,300,400,500],
+                'Tenet':[500,400,300,200,100],
+                'Alphabet':['A','B','C','D','E']}
+    local_df = pd.DataFrame(some_dict)
+    to_csv_path = 'model/mike1994/local_df.csv'
+    local_df.to_csv('to_csv_path')
+    st.write('local_df to_csv   DONE!')
+    csv_df = pd.read_csv(to_csv_path)
+    st.dataframe(csv_df)
   except:
     st.error('ERROR LOCAL')
     
