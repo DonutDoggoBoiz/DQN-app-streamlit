@@ -279,10 +279,11 @@ if gcs_switch:
   local_path = 'models/gcs_mnist_test.csv'
   content = bucket.blob(file_path).download_to_filename(local_path)
 
-show_file = st.button('Show local file')
+save_show_file = st.button('Save and Show file')
+just_show_file = st.button('Just Show file')
 save_file = st.button('Save to GCS')
 
-if show_file:
+if save_show_file:
   try:
     some_dict = {'Close':[100,200,300,400,500],
                 'Tenet':[500,400,300,200,100],
@@ -294,7 +295,14 @@ if show_file:
     csv_df = pd.read_csv(to_csv_path)
     st.dataframe(csv_df)
   except:
-    st.error('ERROR LOCAL')
+    st.error('ERROR SAVE and SHOW')
+
+if just_show_file:
+  try:
+    csv_df = pd.read_csv(to_csv_path)
+    st.dataframe(csv_df)
+  except:
+    st.error('ERROR JUST SHOW')
     
 if save_file:
   try:
